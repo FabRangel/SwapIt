@@ -2,16 +2,20 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'login',  // Define primero la ruta para login
-    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
+    path: 'inicio',  
+    loadComponent: () => import('./pages/inicio/inicio.page').then(m => m.InicioPage)
   },
   {
-    path: '',  // Redirecciona a login si la ruta está vacía
-    redirectTo: 'login',
+    path: '',  
+    redirectTo: 'inicio',
     pathMatch: 'full'
   },
   {
-    path: 'tabs',  // Carga las tabs solo después del login
+    path: 'tabs', 
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
   }
 ];

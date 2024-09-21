@@ -1,68 +1,75 @@
-ion-content {
-  --background: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-  height: 100%;
-}
-
-.bgInicio {
-  background-image: url("/assets/images/bgInicio.svg");
+.bgLogin {
+  background-image: url("/assets/images/bgLogin.svg");
   background-size: cover;
-  background-position: initial;
-  background-repeat: no-repeat;
+  background-position: center;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1; /* Envía la imagen al fondo */
-  justify-content: space-between;
-  display: flex;
-}
-
-.bgLogo {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-  text-align: center;
+}
+
+.bgLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 180px;
 }
 
 .logoContainer img {
-  max-width: 100%;
-  max-height: 200px;
+  max-width: 150px; 
+  margin-bottom: 15px; 
 }
 
-.textContainer {
-  margin-top: 20px;
+.forms {
+  width: 100%;
+  max-width: 300px;
   padding: 0 20px;
 }
 
-.textContainer p {
-  font-size: 16px;
-  color: #333;
-}
-
-.botones {
-  display: flex;
-  margin-top: 10px;
-  justify-content: space-around;
+ion-input {
+  --placeholder-color: #656060 !important;
+  --background: transparent !important;
+  color: rgb(84, 81, 81);
   width: 100%;
+  &:focus {
+    --highlight-color: #2252a7 !important;
+    color: #2252a7 !important;
+  }
+  --highlight-color-focused: #55a2ef !important;
+  --highlight-color: #55a2ef !important;
 }
 
-.botones ion-button {
-  flex: 1;
-  margin: 0 20px;
+.forgot-password {
+  text-align: right; /* Alinea el texto a la derecha */
+  margin-top: 8px; /* Espacio superior para separar del input */
+}
+
+.forgot-password a {
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  font-size: 12px;
 }
 
 .socialMedia {
-  position: absolute;
-  bottom: 100px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
+}
+
+.signInText {
+  position: absolute;
+  bottom: 30px;
+}
+
+.signInText a {
+  text-decoration: none; 
+  font-size: 14px;
+}
+
+.socialMedia{
+position: absolute;
+bottom:80px;
 }
