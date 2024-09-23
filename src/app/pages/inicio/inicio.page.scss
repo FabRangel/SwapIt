@@ -1,9 +1,5 @@
 ion-content {
   --background: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-  height: 100%;
 }
 
 .bgInicio {
@@ -12,57 +8,28 @@ ion-content {
   background-position: initial;
   background-repeat: no-repeat;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1; /* Envía la imagen al fondo */
-  justify-content: space-between;
-  display: flex;
+  z-index: -1;
 }
 
 .bgLogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
+  margin-top: 35vh;
+}
+
+.inicioText {
   text-align: center;
 }
 
-.logoContainer img {
-  max-width: 100%;
-  max-height: 200px;
+.buttons{
+  margin-top: 5vh;
+}
+ion-button.btnIngresar {
+  --background: #2252A7;
 }
 
-.textContainer {
-  margin-top: 20px;
-  padding: 0 20px;
+.socialMedia ion-button {
+  --background: black;
 }
 
-.textContainer p {
-  font-size: 16px;
-  color: #333;
-}
-
-.botones {
-  display: flex;
-  margin-top: 10px;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.botones ion-button {
-  flex: 1;
-  margin: 0 20px;
-}
-
-.socialMedia {
-  position: absolute;
-  bottom: 100px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+.socialMedia{
+ margin-top: 10vh;
 }

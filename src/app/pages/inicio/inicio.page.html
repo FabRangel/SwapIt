@@ -2,34 +2,53 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="bgInicio">
-    <div class="bgLogo">
-      <div class="logoContainer">
-        <img src="/assets/images/logo.png">
-      </div>
-      <div class="textContainer">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.</p>
-      </div>
-      <div class="botones">
-        <ion-button mode="ios" shape="round" routerLink="/login" >
+  <ion-grid class="bgInicio">
+
+    <ion-row class="bgLogo">
+      <ion-col offset="4" size="4">
+        <img src="/assets/images/logo.png" alt="imagen de logo">
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="inicioText">
+      <ion-col size="12">
+        <ion-text>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="buttons">
+      <ion-col class="ion-text-center" size="6">
+        <ion-button class="btnIngresar" expand="block" mode="ios" shape="round" routerLink="/login">
           Ingresar
         </ion-button>
-        <ion-button mode="ios" color="light" fill="outline" shape="round">
+      </ion-col>
+      <ion-col class="ion-text-center" size="6">
+        <ion-button mode="ios" expand="block" fill="outline" shape="round" routerLink="/signup">
           Registrarse
         </ion-button>
-      </div>
-      <div class="socialMedia">
-        <ion-button shape="round" color="light" size="small">
-          <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="socialMedia" >
+      <ion-col class="ion-text-end" size="4">
+        <ion-button shape="round" size="large" fill="solid">
+          <ion-icon slot="icon-only" name="logo-facebook" size="large"></ion-icon>
         </ion-button>
-        <ion-button shape="round" color="light" size="small">
-          <ion-icon slot="icon-only" name="logo-github"></ion-icon>
+      </ion-col>
+      <ion-col class="ion-text-center" size="4">
+        <ion-button shape="round"  size="large" fill="solid">
+          <ion-icon slot="icon-only" name="logo-github" size="large" ></ion-icon>
         </ion-button>
-        <ion-button shape="round" color="light" size="small">
-          <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+      </ion-col>
+      <ion-col class="ion-text-start" size="4">
+        <ion-button shape="round" size="large" fill="solid">
+          <ion-icon slot="icon-only" name="logo-google" size="large"></ion-icon>
         </ion-button>
-      </div>
-    </div>
-  </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 
 </ion-content>

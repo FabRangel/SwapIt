@@ -1,0 +1,42 @@
+.bgSignup {
+  background-image: url("/assets/images/bgLogin.svg");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.logoContainer img {
+  max-width: 50px;
+  margin-top: 2vh;
+  margin-right: 2vw;
+  cursor: pointer;
+}
+
+.titleContainer{
+  margin-top: 8vh;
+}
+
+.title h1{
+  font-size: 35px;
+}
+
+.subtitleContainer{
+  color: grey;
+}
+
+.noMargin{
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.btnSignup{
+ margin-top: 4vh;
+}
+
+.bgSignup ion-button {
+  margin: 0px;
+  color: black;
+  --border-color: #2252A7;
+  --border-width: 3px;
+  --background-activated:#a5bce4;
+}

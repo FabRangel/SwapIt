@@ -2,51 +2,73 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="bgLogin">
-    <div class="bgLogo">
-      <div class="logoContainer">
-        <img src="/assets/images/logo.png">
-      </div>
-      <div class="forms">
-        <ion-input mode="ios" class="ion-margin-top" type="email" fill="solid" label="Correo" labelPlacement="floating" helperText="Ingresa tu correo"
-          errorText="Correo inválido" ngModel email>
-          <ion-icon  slot="start" name="mail" aria-hidden="true" ></ion-icon>
+  <ion-grid class="bgLogin">
+
+    <ion-row class="logoContainer">
+      <ion-col offset="4" size="4">
+        <img src="/assets/images/logo.png" alt="imagen de logo">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col offset="1" size="10">
+        <ion-input mode="ios" class="ion-margin-top" type="email" fill="solid" label="Correo" labelPlacement="floating"
+          helperText="Ingresa tu correo" errorText="Correo inválido" ngModel email>
+          <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
         </ion-input>
-        <ion-input mode="ios" class="ion-margin-top" type="password" fill="solid" label="Contraseña" labelPlacement="floating" helperText="Ingresa tu contraseña"
-          errorText="Contraseña inválida" ngModel email>
-          <ion-icon slot="start" name="key" aria-hidden="true" ></ion-icon>
+      </ion-col>
+      <ion-col offset="1" size="10">
+        <ion-input mode="ios" class="ion-margin-top" type="password" fill="solid" label="Contraseña"
+          labelPlacement="floating" helperText="Ingresa tu contraseña" errorText="Contraseña inválida" ngModel email>
+          <ion-icon slot="start" name="key" aria-hidden="true"></ion-icon>
           <ion-button mode="ios" color="primary" fill="clear" slot="end" aria-label="Show/hide">
             <ion-icon slot="icon-only" name="eye" aria-hidden="true"></ion-icon>
           </ion-button>
         </ion-input>
-        <div class="forgot-password ">
-          <ion-text class="ion-text-end" color="primary">
-            <a href="/forgot-password"><b>Olvidé mi contraseña</b></a>
-          </ion-text>
-        </div>
-        <div class="ion-padding-top ion-margin-top">
-          <ion-button class="btnLogin" mode="ios" expand="block" shape="round"  >
-            Ingresar
-          </ion-button>
-        </div>
-      </div>
-     
-    </div>
-    <div class="socialMedia">
-      <ion-button shape="round" color="light" size="large">
-        <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
-      </ion-button>
-      <ion-button shape="round" color="light" size="large">
-        <ion-icon slot="icon-only" name="logo-github"></ion-icon>
-      </ion-button>
-      <ion-button shape="round" color="light" size="large">
-        <ion-icon slot="icon-only" name="logo-google"></ion-icon>
-      </ion-button>
-    </div>
-    <div class="signInText">
-      <ion-text class="ion-text-center">
-        <a class="ion-text-center" href="/forgot-password">¿No tienes cuenta?<b> Regístrate</b></a>
-      </ion-text>
-    </div>
-  </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-end" offset="1" size="10">
+        <ion-text class="forgotPassword">
+          <a href="/reset-password"><b>Olvidé mi contraseña</b></a>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col offset="1" size="10">
+        <ion-button class="btnLogin" mode="ios" expand="block" shape="round"  >
+          Ingresar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="socialMedia" >
+      <ion-col class="ion-text-end" size="4">
+        <ion-button shape="round" size="large" fill="solid">
+          <ion-icon slot="icon-only" name="logo-facebook" size="large"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-text-center" size="4">
+        <ion-button shape="round"  size="large" fill="solid">
+          <ion-icon slot="icon-only" name="logo-github" size="large" ></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-text-start" size="4">
+        <ion-button shape="round" size="large" fill="solid">
+          <ion-icon slot="icon-only" name="logo-google" size="large"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center" offset="1" size="10">
+        <ion-text >
+          <a class="ion-text-center register" routerLink="/signup">¿No tienes cuenta?<b> Regístrate</b></a>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

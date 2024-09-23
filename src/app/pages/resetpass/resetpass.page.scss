@@ -1,0 +1,30 @@
+.bgReset {
+  background-image: url("/assets/images/bgLogin.svg");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.logoContainer img {
+  max-width: 50px;
+  margin-top: 2vh;
+  margin-right: 2vw;
+  cursor: pointer;
+}
+
+.titleContainer {
+  margin-top: 20vh;
+}
+
+.title h1 {
+  font-size: 40px;
+}
+
+.subtitleContainer {
+  color: grey;
+}
+
+ion-button {
+  --background: #2252A7;
+  --background-activated:#d6e4f5;
+}

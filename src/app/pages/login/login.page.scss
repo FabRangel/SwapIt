@@ -3,18 +3,10 @@
   background-size: cover;
   background-position: center;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
-.bgLogo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  top: 180px;
+.logoContainer{
+  margin-top: 18vh;
 }
 
 .logoContainer img {
@@ -22,54 +14,29 @@
   margin-bottom: 15px; 
 }
 
-.forms {
-  width: 100%;
-  max-width: 300px;
-  padding: 0 20px;
-}
-
-ion-input {
-  --placeholder-color: #656060 !important;
-  --background: transparent !important;
-  color: rgb(84, 81, 81);
-  width: 100%;
-  &:focus {
-    --highlight-color: #2252a7 !important;
-    color: #2252a7 !important;
-  }
-  --highlight-color-focused: #55a2ef !important;
-  --highlight-color: #55a2ef !important;
-}
-
-.forgot-password {
-  text-align: right; /* Alinea el texto a la derecha */
-  margin-top: 8px; /* Espacio superior para separar del input */
-}
-
-.forgot-password a {
-  text-decoration: none; /* Elimina el subrayado del enlace */
+.forgotPassword a {
+  color: black !important;
+  text-decoration: none;
   font-size: 12px;
+  cursor: pointer;
 }
 
-.socialMedia {
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+ion-button.btnLogin {
+  --background: #2252A7;
 }
 
-.signInText {
-  position: absolute;
-  bottom: 30px;
-}
-
-.signInText a {
-  text-decoration: none; 
-  font-size: 14px;
+.socialMedia ion-button {
+  --background: black;
 }
 
 .socialMedia{
-position: absolute;
-bottom:80px;
-}
+  margin-top: 5vh;
+  margin-bottom: 3vh;
+ }
+
+ .register{
+  color: black !important;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+ }
