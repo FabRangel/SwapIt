@@ -11,7 +11,7 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'tabs', 
+    path: '', 
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
   {
@@ -25,5 +25,5 @@ export const routes: Routes = [
   {
     path: 'reset-password',
     loadComponent: () => import('./pages/resetpass/resetpass.page').then( m => m.ResetpassPage)
-  }
+  },
 ];
