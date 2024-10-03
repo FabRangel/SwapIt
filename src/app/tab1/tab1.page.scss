@@ -80,3 +80,29 @@ ion-card-header {
   text-align: center;
   padding: 10px;
 }
+ion-segment{
+  --background:#e8f1fdb7;
+  --border-radius:20px;
+}
+ion-segment-button {
+  --indicator-color: #2d5fa1;
+}
+
+/* Material Design styles */
+ion-segment-button.md {
+  --color: #000;
+  --color-checked: #2d5fa1;
+  --indicator-height: 4px;
+}
+
+/* iOS styles */
+ion-segment-button.ios {
+  --color: #2d5fa1;
+  --color-checked: #fff;
+  --border-radius: 20px;
+}
+
+ion-progress-bar{
+  --background: #d6e4f5;
+  --progress-background: #2d5fa1;
+}

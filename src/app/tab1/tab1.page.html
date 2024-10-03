@@ -27,7 +27,14 @@
                   <ion-text color="danger"><ion-icon name="heart-circle-outline" ></ion-icon></ion-text>
                   101
                 </ion-text><br>
-                <ion-toggle mode="ios" ></ion-toggle>
+                <ion-segment mode="ios" value="like">
+                  <ion-segment-button  value="dislike">
+                    <ion-icon name="heart-dislike"></ion-icon>
+                  </ion-segment-button>
+                  <ion-segment-button value="like">
+                    <ion-icon name="heart"></ion-icon>
+                  </ion-segment-button>
+                </ion-segment>
               </ion-col>
             </ion-row>
           </swiper-slide>
@@ -44,7 +51,14 @@
                   <ion-text color="danger"><ion-icon name="heart-circle-outline"></ion-icon></ion-text>
                   101
                 </ion-text><br>
-                <ion-toggle mode="ios"></ion-toggle>
+                <ion-segment mode="ios" value="like">
+                  <ion-segment-button value="dislike">
+                    <ion-icon name="heart-dislike"></ion-icon>
+                  </ion-segment-button>
+                  <ion-segment-button value="like">
+                    <ion-icon name="heart"></ion-icon>
+                  </ion-segment-button>
+                </ion-segment>
               </ion-col>
             </ion-row>
           </swiper-slide>
@@ -61,7 +75,14 @@
                   <ion-text color="danger"><ion-icon name="heart-circle-outline"></ion-icon></ion-text>
                   101
                 </ion-text> <br>
-                <ion-toggle mode="ios"></ion-toggle>
+                <ion-segment mode="ios" value="like">
+                  <ion-segment-button value="dislike">
+                    <ion-icon name="heart-dislike"></ion-icon>
+                  </ion-segment-button>
+                  <ion-segment-button value="like">
+                    <ion-icon name="heart"></ion-icon>
+                  </ion-segment-button>
+                </ion-segment>
               </ion-col>
             </ion-row>
           </swiper-slide>
@@ -69,29 +90,48 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-chip mode="ios" class="chipHome">
+    <ion-row class="ion-padding-top">
+    <!-- <ion-chip mode="ios" class="chipHome">
         <ion-label>Inicio</ion-label>
         <ion-icon color="light" name="close-circle"></ion-icon>
       </ion-chip>
       <ion-chip mode="ios" class="chipCat">
         <ion-label>Categorías</ion-label>
         <ion-icon name="close-circle"></ion-icon>
-      </ion-chip>
+      </ion-chip>--> 
+      <ion-col size="12">
+        <ion-segment 	swipe-gesture mode="ios" [scrollable]="true" value="todo">
+          <ion-segment-button value="todo">
+            <ion-icon name="earth-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="electrodomesticos">
+            <ion-icon name="tv-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="moda">
+            <ion-icon name="shirt-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="hogar">
+            <ion-icon name="home-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="otros">
+            <ion-icon name="extension-puzzle-outline"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+      
     </ion-row>
 
-    <ion-row class="ion-no-margin ion-no-padding">
-      <ion-col class="divider" size="12">
-        <ion-item-divider  mode="ios">
-        </ion-item-divider>
-      </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <ion-progress-bar></ion-progress-bar>
+    </ion-col>
+  </ion-row>
 
     <ion-row>
       <ion-col size="12">
         <swiper-container [slidesPerView]="3" [loop]="true">
           <swiper-slide>
-            <ion-card class="custom-card" >
+            <ion-card class="custom-card" id="present-alert" >
               <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
               <ion-card-header>
                 <ion-card-title>Card Title</ion-card-title>
@@ -145,6 +185,12 @@
             </ion-card>
           </swiper-slide>
         </swiper-container>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <app-item-detail></app-item-detail>
       </ion-col>
     </ion-row>
 
