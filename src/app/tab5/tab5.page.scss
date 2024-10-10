@@ -1,0 +1,35 @@
+.bgHome{
+    background-image: url("/assets/images/bgHome.svg");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.logoContainer img {
+    max-width: 50px;
+    margin-top: 2vh;
+    margin-right: 2vw;
+    cursor: pointer;
+  }
+
+.title{ 
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 2vh;
+    margin-left: 2vw;
+  }
+  
+  .btn-delete{
+    --background: #d6e4f5;
+    color: #000000;
+  }
+
+  .btn-offer{
+    --background: #2d5fa1;
+    color: #ffffff;
+  }
+
+  .item-transparent{
+    --background: transparent;
+  }

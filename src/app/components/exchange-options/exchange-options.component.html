@@ -1,0 +1,35 @@
+<ion-grid fixed>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon color="danger" size="large" slot="icon-only" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-row>
+    <ion-col offset="1" size="10">
+      <ion-list>
+        <ion-radio-group>
+          @for (product of products; track $index) {
+            <ion-item>
+              <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div style="display: flex; align-items: center;">
+                  <ion-radio [value]="product" slot="start"></ion-radio>
+                  <span style="margin-left: 10px;">{{ product.name }}</span>
+                </div>
+                <p class="calidad-text" >{{ product.quality }}</p>
+              </div>
+            </ion-item>
+          }
+        </ion-radio-group>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-button (click)="openModalAsking('aceptar')"  expand="block" color="success" fill="outline" shape="round">
+        Aceptar intercambio
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

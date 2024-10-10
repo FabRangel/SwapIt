@@ -131,7 +131,7 @@
       <ion-col size="12">
         <swiper-container [slidesPerView]="3" [loop]="true">
           <swiper-slide>
-            <ion-card class="custom-card" id="present-alert" >
+            <ion-card class="custom-card" id="open-modal" >
               <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
               <ion-card-header>
                 <ion-card-title>Card Title</ion-card-title>
@@ -140,7 +140,7 @@
             </ion-card>
           </swiper-slide>
           <swiper-slide>
-            <ion-card class="custom-card">
+            <ion-card class="custom-card" id="my-product">
               <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
               <ion-card-header>
                 <ion-card-title>Card Title</ion-card-title>
@@ -149,7 +149,7 @@
             </ion-card>
           </swiper-slide>
           <swiper-slide>
-            <ion-card class="custom-card">
+            <ion-card class="custom-card" id="open-offer">
               <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
               <ion-card-header>
                 <ion-card-title>Card Title</ion-card-title>
@@ -190,7 +190,17 @@
 
     <ion-row>
       <ion-col size="12">
-        <app-item-detail></app-item-detail>
+        <app-item-detail/>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <app-my-products/>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <app-my-offer/>
       </ion-col>
     </ion-row>
 

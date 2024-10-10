@@ -1,0 +1,77 @@
+.bgHome{
+    background-image: url("/assets/images/bgHome.svg");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.logoContainer img {
+    max-width: 50px;
+    margin-top: 2vh;
+    margin-right: 2vw;
+    cursor: pointer;
+  }
+
+.title{ 
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 2vh;
+    margin-left: 2vw;
+  }
+  
+  .btn-delete{
+    --background: #d6e4f5;
+    color: #000000;
+  }
+
+  .btn-offer{
+    --background: #2d5fa1;
+    color: #ffffff;
+  }
+
+  .item-transparent{
+    --background: transparent;
+  }
+
+  .chip-accepted{
+    --background: #AAED7D;
+    color: #000000;
+  }
+
+  .chip-rejected{
+    --background: #fda15f;
+    color: #000000;
+  }
+
+  .chip-offered{
+    --background: #FFEB94;
+    color: #000000;
+  }
+
+.accepted-shadow {
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.5); 
+    margin: 5px;
+    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+  
+  .rejected-shadow {
+    box-shadow: 0 4px 8px #fda15f;
+    margin: 5px;
+    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+  
+  .offered-shadow {
+    box-shadow: 0 4px 8px #FFEB94; 
+    margin: 5px;
+    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }

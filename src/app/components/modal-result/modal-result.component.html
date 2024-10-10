@@ -1,0 +1,26 @@
+    <ion-grid fixed>
+      <ion-toolbar id="toolbarex">
+        <ion-buttons slot="end">
+          <ion-button >
+            <ion-icon color="danger" size="large" slot="icon-only" name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-img 
+          [src]="getImageSrc()" 
+            style="width: 50%; height: auto; display: block; margin: 0 auto;">
+          </ion-img>
+        </ion-col>
+
+        <ion-col offset="1" size="10">
+          <ion-text class="ion-text-center">
+            <h1>{{ title }}</h1>
+            <p>{{ subtitle }}</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
