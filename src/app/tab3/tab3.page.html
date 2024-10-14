@@ -1,17 +1,73 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
+  
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid class="bgLogin">
+    <br>
+    <br>
+    <br>
+    <br>
+    <ion-title text-center style="font-size: 44px; font-weight: bold; text-align: center;">
+      <ion-text>Publicación</ion-text>
+    </ion-title>
+    <br>
+    <br>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <ion-grid style="background-color: #ACEDFF;">
+      <ion-row>
+        <ion-col><img src=""></ion-col>
+        <ion-col><h1>USUARIO</h1></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col><ion-icon name="bag-check"></ion-icon>
+        <ion-col>#</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
+
+    <ion-row>
+      <ion-col><ion-button color="primary" shape="round">MIS PUBLICACIONES</ion-button></ion-col>
+      <ion-col><ion-button color="tertiary" shape="round">MIS OFERTAS</ion-button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-button color="success">
+        <ion-icon slot="end" name="close-circle"></ion-icon>
+        Activas
+      </ion-button></ion-col>
+      <ion-col><ion-button color="danger">
+        <ion-icon slot="end" name="close-circle"></ion-icon>
+        En pausa
+      </ion-button></ion-col>
+      <ion-col><ion-button color="warning">
+        <ion-icon slot="end" name="close-circle"></ion-icon>
+        Finalizadas
+      </ion-button></ion-col>
+    </ion-row>
+
+    <ion-grid>
+      <ion-card>
+        <ion-card-content>
+          <img src="">
+          <ion-card-header>
+            <ion-card-title>Producto 1</ion-card-title>
+            <ion-card-subtitle>Nuevo</ion-card-subtitle>
+            <ion-card-subtitle>Ofertas</ion-card-subtitle>
+            <ion-card-subtitle>Fecha</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+  </ion-grid>
+
+  
 </ion-content>
