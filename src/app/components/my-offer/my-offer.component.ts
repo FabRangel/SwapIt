@@ -22,18 +22,6 @@ export class MyOfferComponent  implements OnInit {
       status: 'En proceso',
       date: '05-01-2024'
     },
-    {
-      id: 2,
-      name: 'Producto 2',
-      status: 'Aceptado',
-      date: '10-04-2024'
-    },
-    {
-      id: 3,
-      name: 'Producto 3',
-      status: 'Rechazado',
-      date: '24-09-2024'
-    },
   ];
 
   async openModal(askType: any) {

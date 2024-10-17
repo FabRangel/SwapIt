@@ -44,7 +44,7 @@
         <ion-col offset="1" size="10">
           <ion-list>
             <ion-list-header class="ion-text-center">
-              <ion-label>Tus ofertas</ion-label>
+              <ion-label>Tu oferta</ion-label>
             </ion-list-header>
             @for (item of offers; track $index) {
             <ion-item-sliding>
@@ -68,6 +68,11 @@
             </ion-item-sliding>
           }
           </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col offset="1" size="10">
+          <ion-button (click)="openModal('eliminar')"  mode="ios" expand="block" fill="outline" color="danger">Finalizar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -2,15 +2,17 @@ import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonText, IonCard, IonCol, IonRow, IonIcon, IonButton, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCardContent, IonChip, IonLabel, IonList, IonAvatar, IonItem, IonSegment, IonSegmentButton, IonThumbnail } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
-import { bagCheck, closeCircle, star, starOutline, heart, logoIonic, bag } from 'ionicons/icons';
+import { bagCheck, closeCircle, star, starOutline, heart, logoIonic, bag, closeCircleOutline } from 'ionicons/icons';
 import { CommonModule } from '@angular/common';
+import { MyProductsComponent } from '../components/my-products/my-products.component';
+import { MyOfferComponent } from '../components/my-offer/my-offer.component';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   standalone: true,
-  imports: [CommonModule,IonThumbnail,IonSegmentButton, IonSegment, IonItem, IonAvatar, IonList, IonLabel, IonChip, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonIcon, IonRow, IonCol, IonCard, IonText, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
+  imports: [MyOfferComponent,MyProductsComponent,CommonModule,IonThumbnail,IonSegmentButton, IonSegment, IonItem, IonAvatar, IonList, IonLabel, IonChip, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonIcon, IonRow, IonCol, IonCard, IonText, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
 })
 export class Tab3Page {
   publicaciones = [
@@ -130,7 +132,7 @@ export class Tab3Page {
     },
   ];
   constructor() {
-    addIcons({bag,logoIonic,heart,closeCircle,bagCheck,starOutline,star});
+    addIcons({bag,logoIonic,heart,closeCircle,bagCheck,starOutline,star,closeCircleOutline});
   }
   selectedSegment: string = 'publicaciones'; 
 
