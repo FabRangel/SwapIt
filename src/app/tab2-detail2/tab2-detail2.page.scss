@@ -43,14 +43,14 @@
   }
   
   ion-toggle::part(handle) {
-    background: #eb7769;
+    background: #d6e4f5;
   
     border-radius: 4px;
     box-shadow: none;
   }
   
   ion-toggle.toggle-checked::part(handle) {
-    background: #95c34e;
+    background: #2d5fa1;
   }
   
   .divider{

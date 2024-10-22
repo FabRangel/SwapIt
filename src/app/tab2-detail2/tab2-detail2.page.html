@@ -25,10 +25,10 @@
           <ion-toggle [(ngModel)]="isNewProduct"></ion-toggle>
         </ion-item>
       
-        <ion-item style="--background: white;">
+        <!-- <ion-item style="--background: white;">
           <ion-label style="--color: black;">¿Tu producto funciona?</ion-label>
           <ion-toggle [(ngModel)]="productWorks" checked></ion-toggle>
-        </ion-item>
+        </ion-item> -->
       
         <div class="rating-container">
           <ion-label>Califica la funcionalidad de tu producto</ion-label>
@@ -45,13 +45,13 @@
       
     </div>
     <ion-fab size="100" vertical="bottom">
-      <ion-fab-button (click)="dismissModal()" style="color: #2d5fa1;  margin-bottom: 220px;">
+      <ion-fab-button (click)="dismissModal()" style="color: #2d5fa1;  margin-bottom: 220px; --background: #2d5fa1">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
     <ion-fab horizontal="end" vertical="bottom">
 
-      <ion-fab-button  (click)="openTab2Detail3()"style="color: #2d5fa1;  margin-bottom: 220px;">
+      <ion-fab-button  (click)="openTab2Detail3()"style="color: #2d5fa1;  margin-bottom: 220px; --background: #2d5fa1">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
