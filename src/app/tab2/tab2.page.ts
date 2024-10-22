@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonSearchbar, IonToggle } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
-import { trashBin, warning, calendar, calendarClear, calendarNumber, calendarOutline, heartCircleOutline, closeCircle, home, pin, star, call, globe, basket, barbell, person, heart, trash, earth, tv, tvOutline, tvSharp, shirtOutline, homeOutline, barbellOutline, extensionPuzzleOutline, earthOutline, heartDislikeCircleOutline, heartDislike, headset, shirt } from 'ionicons/icons';
+import { trashBin, warning, calendar, calendarClear, calendarNumber, calendarOutline, heartCircleOutline, closeCircle, home, pin, star, call, globe, basket, barbell, person, heart, trash, earth, tv, tvOutline, tvSharp, shirtOutline, homeOutline, barbellOutline, extensionPuzzleOutline, earthOutline, heartDislikeCircleOutline, heartDislike, headset, shirt, extensionPuzzle } from 'ionicons/icons';
 import { ItemDetailComponent } from '../components/item-detail/item-detail.component';
 import { RouterLink} from '@angular/router';
 import { ModalController, IonicModule } from '@ionic/angular';
@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 export class Tab2Page {
 
   constructor(private modalCtrl: ModalController) {
-    addIcons({headset,home, shirt});
+    addIcons({headset,home, shirt, extensionPuzzle});
   }
   async openTab2Detail() {
     const modal = await this.modalCtrl.create({
