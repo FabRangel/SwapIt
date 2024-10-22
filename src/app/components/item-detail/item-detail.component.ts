@@ -1,41 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { IonAlert, IonContent } from "@ionic/angular/standalone";
-
+import { Component, inject, OnInit } from '@angular/core';
+import { IonAlert, IonContent, IonItem, IonModal, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton, IonCheckbox, IonInput, IonGrid, IonRow, IonCol, IonAvatar, IonIcon, IonText, IonChip, IonLabel, IonTextarea,ModalController} from "@ionic/angular/standalone";
+import { addIcons } from 'ionicons';
+import { close, closeCircle, closeCircleOutline, starOutline } from 'ionicons/icons';
+import { ItemOfferComponent } from '../item-offer/item-offer.component';
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
   styleUrls: ['./item-detail.component.scss'],
   standalone: true,
-  imports: [IonContent, IonAlert, ],
+  imports: [ItemOfferComponent,IonTextarea, IonLabel, IonChip, IonText, IonIcon, IonAvatar, IonCol, IonRow, IonGrid, IonInput, IonCheckbox, IonButton, IonButtons, IonToolbar, IonTitle, IonHeader, IonModal, IonItem, IonContent, IonAlert, ],
 })
 export class ItemDetailComponent  implements OnInit {
 
-  constructor() {
-    
+  constructor(
+    private modalCtrl : ModalController
+  ) {
+    addIcons({closeCircleOutline,starOutline,closeCircle,close});
    }
-   public alertButtons = ['OK'];
-  public alertInputs = [
-    {
-      placeholder: 'Name',
-    },
-    {
-      placeholder: 'Nickname (max 8 characters)',
-      attributes: {
-        maxlength: 8,
-      },
-    },
-    {
-      type: 'number',
-      placeholder: 'Age',
-      min: 1,
-      max: 100,
-    },
-    {
-      type: 'textarea',
-      placeholder: 'A little about yourself',
-    },
-  ];
+   
+  ngOnInit() {
+  }
 
-  ngOnInit() {}
+  rating = 3;  
 
+  setRating(stars: number) {
+    this.rating = stars; 
+  }
+
+  async openclose() {
+    this.modalCtrl.dismiss();
+      const modal = await this.modalCtrl.create({
+        component: ItemOfferComponent,
+        mode: 'ios',
+        cssClass: 'my-modal',
+        showBackdrop: false,
+      });
+      await modal.present();
+  }
+ 
 }

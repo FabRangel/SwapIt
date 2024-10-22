@@ -1,0 +1,129 @@
+  .bgHome{
+    background-image: url("/assets/images/bgHome.svg");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    padding:0;
+}
+
+.logoContainer img {
+    max-width: 60px;
+    margin-top: 2vh;
+    margin-right: 2vw;
+    cursor: pointer;
+  }
+  ion-item.stars{
+    --pading:0;
+    --background: #d6e4f5;
+  }
+  ion-avatar {
+    --border-radius: 4px;
+  }
+  ion-grid{
+    --margin:0;
+    --padding:0;
+  }
+  .user-info{
+    background-color: #d6e4f5;
+    padding: 10px;
+    margin: 0px;
+  }
+
+.title{ 
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 2vh;
+    margin-left: 2vw;
+  }
+  
+  .btn-delete{
+    --background: #d6e4f5;
+    color: #000000;
+  }
+
+  .btn-offer{
+    --background: #2d5fa1;
+    color: #ffffff;
+  }
+
+  .item-transparent{
+    --background: transparent;
+  }
+
+  .chip-accepted{
+    --background: #AAED7D;
+    color: #000000;
+  }
+
+  .chip-rejected{
+    --background: #fda15f;
+    color: #000000;
+  }
+
+  .chip-offered{
+    --background: #FFEB94;
+    color: #000000;
+  }
+
+.accepted-shadow {
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.5); 
+    margin: 5px;
+    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+  
+  .rejected-shadow {
+    box-shadow: 0 4px 8px #fda15f;
+    margin: 5px;
+    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+  
+  .offered-shadow {
+    box-shadow: 0 4px 8px #FFEB94; 
+    margin: 5px;
+    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+
+  /* iOS styles */
+ion-segment-button.ios {
+  --color: #2d5fa1;
+  --color-checked: #fff;
+  --border-radius: 20px;
+}
+ion-segment{
+  --background:#e8f1fdb7;
+  --border-radius:20px;
+}
+ion-segment-button {
+  --indicator-color: #2d5fa1;
+}
+
+.item-accepted {
+  //color: rgba(0, 128, 0, 0.5);
+  border: 2px solid rgba(0, 128, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.5); 
+  margin: 5px;
+}
+
+.item-paused {
+  //color: #FFEB94;
+  border: 2px solid #FFEB94;
+  box-shadow: 0 4px 8px #FFEB94;
+  margin: 5px;
+}
+
+.item-rejected {
+  //color: #fda15f;
+  border: 2px solid #fda15f;
+  box-shadow: 0 4px 8px #fda15f;
+  margin: 5px;
+}

@@ -1,0 +1,83 @@
+
+    <ion-grid fixed >
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button >
+            <ion-icon (click)="close()"  color="danger" size="large" slot="icon-only" name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-row class="ion-text-center">
+        <ion-col size="12">
+          <ion-text>
+            <h1 class="ion-text-center">¿Qué deseas ofertar?</h1>
+            <p>Este producto acepta las siguientes categorías</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col size="12">
+          <ion-chip *ngFor="let category of categories" [color]="selectedChip === category ? 'success' : 'medium'"
+            (click)="selectChip(category)">
+            <ion-label>{{ category }}</ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col offset="1" size="2">
+          <ion-avatar>
+            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="9">
+          <ion-input type="text" placeholder="Tu producto"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col offset="1" size="10">
+          <ion-textarea [counter]="true" maxlength="250" [autoGrow]="true" label="Descripción"
+            labelPlacement="floating"></ion-textarea>
+        </ion-col>
+        <ion-col offset="1" size="10">
+          <ion-label>Valoración</ion-label> <br>
+          <ion-item lines="none" class="ion-text-center">
+            <ion-icon size="large" [name]="rating >= 1 ? 'star' : 'star-outline'"
+              [color]="rating >= 1 ? 'warning' : 'medium'" (click)="setRating(1)">
+            </ion-icon>
+            <ion-icon size="large" [name]="rating >= 2 ? 'star' : 'star-outline'"
+              [color]="rating >= 2 ? 'warning' : 'medium'" (click)="setRating(2)">
+            </ion-icon>
+            <ion-icon size="large" [name]="rating >= 3 ? 'star' : 'star-outline'"
+              [color]="rating >= 3 ? 'warning' : 'medium'" (click)="setRating(3)">
+            </ion-icon>
+            <ion-icon size="large" [name]="rating >= 4 ? 'star' : 'star-outline'"
+              [color]="rating >= 4 ? 'warning' : 'medium'" (click)="setRating(4)">
+            </ion-icon>
+            <ion-icon size="large" [name]="rating >= 5 ? 'star' : 'star-outline'"
+              [color]="rating >= 5 ? 'warning' : 'medium'" (click)="setRating(5)">
+            </ion-icon>
+          </ion-item>
+        </ion-col>
+        <ion-col offset="1" size="10">
+          <ion-label>Calidad</ion-label> <br><br>
+          <ion-radio-group value="custom-checked">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="nuevo" aria-label="Nuevo"></ion-radio>
+              <ion-label>Nuevo</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-radio slot="start" value="usado" aria-label="Usado"></ion-radio>
+              <ion-label>Usado</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="close()" mode="ios" expand="block" fill="outline" color="danger"  >Cancelar</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="openResultModal('success')"  mode="ios" expand="block" fill="outline" color="primary">Ofertar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
