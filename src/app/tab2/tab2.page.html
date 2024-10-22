@@ -1,17 +1,54 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid class="bgHome">
+    <br>
+    <br>
+    <ion-row class="bgLogo">
+      <ion-col size="auto" class="logo-col">
+        <img tab="tab2" href="tab2" src="/assets/images/logo.png" alt="imagen de logo" class="logo-img">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-grid>
+        <div style="text-align: center; margin-top: 50px; color: black;">
+        </div>
+        <div style="text-align: center; margin-bottom: 3px; color: black;">
+          <h2 style="font-size: 37px;"><strong>Publica tu
+          </strong>
+          </h2>
+          <h2 style="font-size: 37px;margin-top: 1px;"><strong>
+            producto</strong>
+          </h2>
+          <h5>¿Que vas a publicar?</h5>
+        </div>
+        <ion-row size="100" class="ion-justify-content-center ion-align-items-center" >
+          <ion-col size="4">
+            <ion-button class="custom-icon" style="--border-radius: 50%; width: 120px; height: 120px;"(click)="openTab2Detail()">
+              <ion-icon name="shirt"  style="color: #ffffff;" ></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="center">
+            <ion-button class="custom-icon" style="--border-radius: 50%; width: 120px; height: 120px;">
+              <ion-icon name="headset" style="color: #ffffff;"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row size="100" class="ion-justify-content-center ion-align-items-center">
+          <ion-col size="4">
+            <ion-button class="custom-icon" style="--border-radius: 50%; width: 120px; height: 120px;" >
+              <ion-icon name="home"  style="color: #ffffff;" ></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="center">
+            <ion-button class="custom-icon" style="--border-radius: 50%; width: 120px; height: 120px;" >
+              <ion-icon size="center" class="fas fa-puzzle-piece" name="shirt"  style="color: #ffffff;" ></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </ion-row>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  </ion-grid>
 </ion-content>

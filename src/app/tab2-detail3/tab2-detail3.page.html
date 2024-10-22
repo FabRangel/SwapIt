@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  <ion-grid class="bgHome">
+    <br>
+    <br>
+    <br>
+    <ion-row class="bgLogo">
+      <ion-col size="auto" class="logo-col">
+        <img tab="tab2" href="tab2" src="/assets/images/logo.png" alt="imagen de logo" class="logo-img">
+      </ion-col>
+    </ion-row>
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 5px; color: black;">
+        <h2 style="font-size: 30px;"><strong>Publica tu producto
+        </strong>
+        </h2>
+        <br>
+        <br>
+        <h5>¿Qué categorías te interesan para el cambio?</h5>
+        
+        <ion-item style="--background: white; --color: black;">
+          <ion-icon name="aperture-outline"></ion-icon>
+          <ion-select [(ngModel)]="selectedOption" placeholder="Tecnologia y electronicos">
+            <ion-select-option *ngFor="let option of options" [value]="option">{{ option }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <br>
+        <ion-chip style="--background: #b8cbe4; --color: black; --margin-right: auto;">Tecnologias y electronicos
+          <ion-icon name="close"></ion-icon>
+        </ion-chip>
+        <ion-chip style="--background: #b8cbe4; --color: black;">Hogar
+          <ion-icon name="close"></ion-icon>
+        </ion-chip>
+        
+        
+      </div>
+      
+    </div>
+    <ion-fab size="100" vertical="bottom">
+      <ion-fab-button (click)="dismissModal()" style="color: #2d5fa1;  margin-bottom: 220px;">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab horizontal="end" vertical="bottom">
+
+      <ion-fab-button (click)="openTab2Detail4()" style="color: #2d5fa1;  margin-bottom: 220px;">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-grid>
+  
+</ion-content>

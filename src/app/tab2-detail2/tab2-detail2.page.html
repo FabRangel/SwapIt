@@ -1,0 +1,60 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="bgHome">
+    <br>
+    <br>
+    <br>
+    <ion-row class="bgLogo">
+      <ion-col size="auto" class="logo-col">
+        <img tab="tab2" href="tab2" src="/assets/images/logo.png" alt="imagen de logo" class="logo-img">
+      </ion-col>
+    </ion-row>
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 5px; color: black;">
+        <h2 style="font-size: 30px;"><strong>Publica tu producto
+        </strong>
+        </h2>
+        <br>
+        <br>
+        <h5>Cuéntanos más sobre tu producto</h5>
+
+        <ion-item style="--background: white;">
+          <ion-label style="--color: black;">¿Tu producto es nuevo?</ion-label>
+          <ion-toggle [(ngModel)]="isNewProduct"></ion-toggle>
+        </ion-item>
+      
+        <ion-item style="--background: white;">
+          <ion-label style="--color: black;">¿Tu producto funciona?</ion-label>
+          <ion-toggle [(ngModel)]="productWorks" checked></ion-toggle>
+        </ion-item>
+      
+        <div class="rating-container">
+          <ion-label>Califica la funcionalidad de tu producto</ion-label>
+          <div class="stars">
+            <ion-icon 
+            *ngFor="let star of [1,2,3,4,5]; let i = index"
+            [name]="i < rating ? 'star' : 'star-outline'" 
+            (click)="rateProduct(i + 1)" 
+            class="star-icon"></ion-icon>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    <ion-fab size="100" vertical="bottom">
+      <ion-fab-button (click)="dismissModal()" style="color: #2d5fa1;  margin-bottom: 220px;">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab horizontal="end" vertical="bottom">
+
+      <ion-fab-button  (click)="openTab2Detail3()"style="color: #2d5fa1;  margin-bottom: 220px;">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-grid>
+  
+</ion-content>

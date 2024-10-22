@@ -1,0 +1,158 @@
+.bgHome{
+    background-image: url("/assets/images/bgHome.svg");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+  }
+  
+  .imgContainer img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+  
+  .chipHome{
+    --background: #2d5fa1!important;
+    --color:white;
+  }
+  .chipCat{
+    --background: #d6e4f5!important;
+    --color:black;
+  }
+  
+  ion-toggle {
+    padding: 12px;
+  
+    --handle-width: 25px;
+    --handle-height: 27px;
+    --handle-max-height: auto;
+    --handle-spacing: 6px;
+  
+    contain: none;
+  }
+  
+  ion-toggle::part(track),
+  ion-toggle.toggle-checked::part(track) {
+    height: 10px;
+    width: 65px;
+  
+    background: #ddd;
+  
+    /* Required for iOS handle to overflow the height of the track */
+    overflow: visible;
+  }
+  
+  ion-toggle::part(handle) {
+    background: #eb7769;
+  
+    border-radius: 4px;
+    box-shadow: none;
+  }
+  
+  ion-toggle.toggle-checked::part(handle) {
+    background: #95c34e;
+  }
+  
+  .divider{
+    width: 100%;
+  }
+  
+  .divider ion-item-divider{
+    --background: #2d5fa1!important;
+    height: 15px !important;
+  }
+  
+  .custom-card {
+  display: flex;
+  flex-direction: column;
+  height: 200px; 
+  width: 90%;
+  }
+  
+  .custom-image {
+  flex: 2;
+  width: 100%; 
+  height: auto; 
+  }
+  
+  ion-card-header {
+  flex: 1; 
+  text-align: center;
+  padding: 10px;
+  }
+  ion-segment{
+  --background:#e8f1fdb7;
+  --border-radius:20px;
+  }
+  ion-segment-button {
+  --indicator-color: #2d5fa1;
+  }
+  
+  /* Material Design styles */
+  ion-segment-button.md {
+  --color: white;
+  --color-checked: #2d5fa1;
+  --indicator-height: 4px;
+  }
+  
+  /* iOS styles */
+  ion-segment-button.ios {
+  --color: #2d5fa1;
+  --color-checked: #fff;
+  --border-radius: 20px;
+  }
+  
+  ion-progress-bar{
+  --background: #d6e4f5;
+  --progress-background: #2d5fa1;
+  }
+  
+  
+  .custom-icon ion-icon {
+  font-size: 70px;
+  }
+  
+  .custom-input {
+    margin: 0 auto; /* Centra horizontalmente */
+    width: 80%;     /* Ajusta el ancho si es necesario */
+    --background: white;  
+    --highlight-color: blue; /* Cambia el color de la línea inferior al azul */
+    --border-color: blue;    /* Cambia el color de la línea cuando no está activo */
+    --highlight-width: px;  
+  }
+  .input-custom {
+    --color: black;          /* Cambia el color del texto a negro */
+  }
+  .rating-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .stars {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .star-icon {
+    font-size: 30px;  // Asegura que las estrellas sean grandes
+    margin: 0 5px;    // Espacio entre estrellas
+    color: #2d5fa1;   // Color dorado para las estrellas
+    cursor: pointer;  // Cambia el cursor para indicar que es clicable
+    padding: 5px;
+  }
+  .bgLogo {
+    display: flex;
+    justify-content: flex-end; /* Alinea la columna a la derecha */
+  }
+  
+  .logo-col {
+    margin-right: 0; /* Asegúrate de que no haya margen a la derecha */
+    padding-right: 0; /* Elimina cualquier espacio de padding a la derecha */
+  }
+  
+  .logo-img {
+    width: 100px; /* Ajusta el tamaño del logo */
+    height: auto;
+    margin-right: -20px; /* Ajusta este valor para pegar más el logo a la derecha */
+  }

@@ -3,24 +3,24 @@
     background-size: cover;
     background-position: center;
     height: 100%;
-}
-
-.imgContainer img{
+  }
+  
+  .imgContainer img{
     width: 100%;
     height: 100%;
     border-radius: 15px;
-}
-
-.chipHome{
+  }
+  
+  .chipHome{
     --background: #2d5fa1!important;
     --color:white;
-}
-.chipCat{
+  }
+  .chipCat{
     --background: #d6e4f5!important;
     --color:black;
-}
-
-ion-toggle {
+  }
+  
+  ion-toggle {
     padding: 12px;
   
     --handle-width: 25px;
@@ -52,77 +52,89 @@ ion-toggle {
   ion-toggle.toggle-checked::part(handle) {
     background: #95c34e;
   }
-
-.divider{
+  
+  .divider{
     width: 100%;
-}
-
-.divider ion-item-divider{
+  }
+  
+  .divider ion-item-divider{
     --background: #2d5fa1!important;
     height: 15px !important;
-}
-
-.custom-card {
+  }
+  
+  .custom-card {
   display: flex;
   flex-direction: column;
   height: 200px; 
   width: 90%;
-}
-
-.custom-image {
+  }
+  
+  .custom-image {
   flex: 2;
   width: 100%; 
   height: auto; 
-}
-
-ion-card-header {
+  }
+  
+  ion-card-header {
   flex: 1; 
   text-align: center;
   padding: 10px;
-}
-ion-segment{
+  }
+  ion-segment{
   --background:#e8f1fdb7;
   --border-radius:20px;
-}
-ion-segment-button {
+  }
+  ion-segment-button {
   --indicator-color: #2d5fa1;
-}
-
-/* Material Design styles */
-ion-segment-button.md {
+  }
+  
+  /* Material Design styles */
+  ion-segment-button.md {
   --color: white;
   --color-checked: #2d5fa1;
   --indicator-height: 4px;
-}
-
-/* iOS styles */
-ion-segment-button.ios {
+  }
+  
+  /* iOS styles */
+  ion-segment-button.ios {
   --color: #2d5fa1;
   --color-checked: #fff;
   --border-radius: 20px;
-}
-
-ion-progress-bar{
+  }
+  
+  ion-progress-bar{
   --background: #d6e4f5;
   --progress-background: #2d5fa1;
-}
-
-
-.custom-icon ion-icon {
+  }
+  
+  
+  .custom-icon ion-icon {
   font-size: 70px;
-}
-.bgLogo {
-  display: flex;
-  justify-content: flex-end; /* Alinea la columna a la derecha */
-}
-
-.logo-col {
-  margin-right: 0; /* Asegúrate de que no haya margen a la derecha */
-  padding-right: 0; /* Elimina cualquier espacio de padding a la derecha */
-}
-
-.logo-img {
-  width: 100px; /* Ajusta el tamaño del logo */
-  height: auto;
-  margin-right: -20px; /* Ajusta este valor para pegar más el logo a la derecha */
-}
+  }
+  
+  .custom-input {
+    margin: 0 auto; /* Centra horizontalmente */
+    width: 80%;     /* Ajusta el ancho si es necesario */
+    --background: white;  
+    --highlight-color: blue; /* Cambia el color de la línea inferior al azul */
+    --border-color: blue;    /* Cambia el color de la línea cuando no está activo */
+    --highlight-width: px;  
+  }
+  .input-custom {
+    --color: black;          /* Cambia el color del texto a negro */
+  }
+  .bgLogo {
+    display: flex;
+    justify-content: flex-end; /* Alinea la columna a la derecha */
+  }
+  
+  .logo-col {
+    margin-right: 0; /* Asegúrate de que no haya margen a la derecha */
+    padding-right: 0; /* Elimina cualquier espacio de padding a la derecha */
+  }
+  
+  .logo-img {
+    width: 100px; /* Ajusta el tamaño del logo */
+    height: auto;
+    margin-right: -20px; /* Ajusta este valor para pegar más el logo a la derecha */
+  }
