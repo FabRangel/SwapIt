@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IonModal, IonGrid, IonToolbar, IonButtons, IonIcon, IonButton, IonCol, IonRow, IonImg, IonText } from "@ionic/angular/standalone";
+import { IonModal, IonGrid, IonToolbar, IonButtons, IonIcon, IonButton, IonCol, IonRow, IonImg, IonText, ModalController } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { closeCircleOutline } from 'ionicons/icons';
+import { closeCircleOutline, close } from 'ionicons/icons';
+
 
 @Component({
   selector: 'app-modal-result',
@@ -15,7 +16,7 @@ export class ModalResultComponent  implements OnInit {
   @Input() title: string = '¡Operación exitosa!';
   @Input() subtitle: string = 'Tu operación fue realizada correctamente.';
   
-  constructor() {
+  constructor(private modalCtrl: ModalController) {
     addIcons({closeCircleOutline});
    }
 
@@ -56,4 +57,9 @@ export class ModalResultComponent  implements OnInit {
     return resultSubtitle;
   }
 
+  closeModal() {
+    this.modalCtrl.dismiss({
+      confirmed: true, 
+    });
+  }
 }

@@ -16,21 +16,20 @@
         <br>
         <br>
         <h5>¿Qué categorías te interesan para el cambio?</h5>
-        
-        <ion-item style="--background: white; --color: black;">
-          <ion-icon name="aperture-outline"></ion-icon>
-          <ion-select [(ngModel)]="selectedOption" placeholder="Tecnologia y electronicos">
+
+        <ion-item class="ion-text-center" style="--background: white; --color: black;">
+          <ion-select mode="ios" [(ngModel)]="selectedOption" placeholder="Selecciona una categoría" (ionChange)="addCategory()">
+            <ion-icon slot="start" name="bag-check-outline" aria-hidden="true"></ion-icon>
             <ion-select-option *ngFor="let option of options" [value]="option">{{ option }}</ion-select-option>
           </ion-select>
         </ion-item>
-        <br>
-        <ion-chip style="--background: #b8cbe4; --color: black; --margin-right: auto;">Tecnologias y electronicos
-          <ion-icon name="close"></ion-icon>
-        </ion-chip>
-        <ion-chip style="--background: #b8cbe4; --color: black;">Hogar
-          <ion-icon name="close"></ion-icon>
-        </ion-chip>
         
+        <br>
+        
+        <ion-chip *ngFor="let category of selectedCategories" style="--background: #b8cbe4; --color: black;">
+          {{ category }}
+          <ion-icon name="close" (click)="removeCategory(category)"></ion-icon>
+        </ion-chip>
         
       </div>
       

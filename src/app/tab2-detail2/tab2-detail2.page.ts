@@ -43,6 +43,7 @@ export class Tab2Detail2Page implements OnInit {
     this.rating = stars;
   }
   async openTab2Detail3() {
+    this.modalCtrl.dismiss();
     const modal = await this.modalCtrl.create({
       component: Tab2Detail3Page,
     });

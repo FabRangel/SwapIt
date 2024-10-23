@@ -23,6 +23,7 @@ export class Tab2Page {
     addIcons({headset,home, shirt, extensionPuzzle});
   }
   async openTab2Detail() {
+    this.modalCtrl.dismiss();
     const modal = await this.modalCtrl.create({
       component: Tab2DetailPage,
     });

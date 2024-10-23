@@ -38,6 +38,7 @@ export class Tab2DetailPage implements OnInit {
     });
   }
   async openTab2Detail1() {
+    this.modalCtrl.dismiss();
     const modal = await this.modalCtrl.create({
       component: Tab2Detail1Page,
     });
