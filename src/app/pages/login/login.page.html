@@ -10,49 +10,52 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col offset="1" size="10">
-        <ion-input mode="ios" class="ion-margin-top" type="email" fill="solid" label="Correo" labelPlacement="floating"
-          helperText="Ingresa tu correo" errorText="Correo inválido" ngModel email>
-          <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
-        </ion-input>
-      </ion-col>
-      <ion-col offset="1" size="10">
-        <ion-input mode="ios" class="ion-margin-top" type="password" fill="solid" label="Contraseña"
-          labelPlacement="floating" helperText="Ingresa tu contraseña" errorText="Contraseña inválida" ngModel email>
-          <ion-icon slot="start" name="key" aria-hidden="true"></ion-icon>
-          <ion-button mode="ios" color="primary" fill="clear" slot="end" aria-label="Show/hide">
-            <ion-icon slot="icon-only" name="eye" aria-hidden="true"></ion-icon>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-row>
+        <ion-col offset="1" size="10">
+          <ion-input mode="ios" class="ion-margin-top" type="email" fill="solid" label="Correo"
+            labelPlacement="floating" helperText="Ingresa tu correo" errorText="Correo inválido" email formControlName="email">
+            <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+          </ion-input>
+        </ion-col>
+        <ion-col offset="1" size="10">
+          <ion-input mode="ios" class="ion-margin-top" [type]="showPassword ? 'text' : 'password'" fill="solid" label="Contraseña"
+            labelPlacement="floating" helperText="Ingresa tu contraseña" errorText="Contraseña inválida" formControlName="password">
+            <ion-icon slot="start" name="key" aria-hidden="true"></ion-icon>
+            <ion-button mode="ios" color="primary" fill="clear" slot="end" aria-label="Show/hide"  (click)="togglePasswordVisibility()">
+              <ion-icon slot="icon-only" [name]="showPassword ? 'eye-off' : 'eye'" aria-hidden="true"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-end" offset="1" size="10">
+          <ion-text class="forgotPassword">
+            <a href="/reset-password"><b>Olvidé mi contraseña</b></a>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col offset="1" size="10">
+          <!-- <ion-button class="btnLogin" mode="ios" expand="block" shape="round" routerLink="/tabs/tab1"> -->
+            <ion-button class="btnLogin" mode="ios" expand="block" shape="round"  type="submit" [disabled]="loginForm.invalid">
+            Ingresar
           </ion-button>
-        </ion-input>
-      </ion-col>
-    </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
 
-    <ion-row>
-      <ion-col class="ion-text-end" offset="1" size="10">
-        <ion-text class="forgotPassword">
-          <a href="/reset-password"><b>Olvidé mi contraseña</b></a>
-        </ion-text>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col offset="1" size="10">
-        <ion-button class="btnLogin" mode="ios" expand="block" shape="round" routerLink="/tabs/tab1" >
-          Ingresar
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="socialMedia" >
+    <ion-row class="socialMedia">
       <ion-col class="ion-text-end" size="4">
         <ion-button shape="round" size="large" fill="solid">
           <ion-icon slot="icon-only" name="logo-facebook" size="large"></ion-icon>
         </ion-button>
       </ion-col>
       <ion-col class="ion-text-center" size="4">
-        <ion-button shape="round"  size="large" fill="solid">
-          <ion-icon slot="icon-only" name="logo-github" size="large" ></ion-icon>
+        <ion-button shape="round" size="large" fill="solid">
+          <ion-icon slot="icon-only" name="logo-github" size="large"></ion-icon>
         </ion-button>
       </ion-col>
       <ion-col class="ion-text-start" size="4">
@@ -64,7 +67,7 @@
 
     <ion-row>
       <ion-col class="ion-text-center" offset="1" size="10">
-        <ion-text >
+        <ion-text>
           <a class="ion-text-center register" routerLink="/signup">¿No tienes cuenta?<b> Regístrate</b></a>
         </ion-text>
       </ion-col>

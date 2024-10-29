@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonInput, IonIcon, IonButton, IonText, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { eye, key, lockClosed, mail, logoFacebook, logoGithub, logoGoogle } from 'ionicons/icons';
+import { eye, key, lockClosed, mail, logoFacebook, logoGithub, logoGoogle, eyeOff } from 'ionicons/icons';
 import { RouterLink } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +13,34 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./login.page.scss'],
   standalone: true,
   imports: [IonCol, IonRow, IonGrid, RouterLink,
-    IonText, IonButton, IonIcon, IonInput, IonItem, IonList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+    IonText, IonButton, IonIcon, IonInput, IonItem, IonList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class LoginPage implements OnInit {
+  loginForm! : FormGroup;
+  showPassword = false;
 
-  constructor() {
-    addIcons({mail,key,eye,logoFacebook,logoGithub,logoGoogle,lockClosed});
+  constructor(private fb: FormBuilder, private authS : AuthService) {
+    addIcons({mail,key,eye,eyeOff,logoFacebook,logoGithub,logoGoogle,lockClosed});
+    
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
+      password: ['', Validators.required]
+    });
+
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   ngOnInit() {
+  }
+
+  login(){
+   this.authS.login(this.loginForm.value).subscribe((response:any)=>{
+      console.log(response);
+    })
+    //console.log(this.loginForm.value);
   }
 
 }
