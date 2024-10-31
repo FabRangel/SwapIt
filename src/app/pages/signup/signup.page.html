@@ -23,21 +23,22 @@
       </ion-col>
     </ion-row>
 
+    <form  [formGroup]="registerForm" (ngSubmit)="register()">
     <ion-row>
       <ion-col class="noMargin" offset="1" size="10">
-        <ion-input  mode="ios" class="ion-margin-top" type="text" fill="solid" label="Nombre" labelPlacement="floating"
+        <ion-input formControlName="name"  mode="ios" class="ion-margin-top" type="text" fill="solid" label="Nombre" labelPlacement="floating"
           helperText="Ingresa tu nombre completo" [counter]="true" maxlength="100" [clearInput]="true" ngModel>
           <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
         </ion-input>
       </ion-col>
       <ion-col class="noMargin" offset="1" size="10">
-        <ion-input mode="ios" class="ion-margin-top" type="email" fill="solid" label="Correo" labelPlacement="floating"
+        <ion-input formControlName="email" mode="ios" class="ion-margin-top" type="email" fill="solid" label="Correo" labelPlacement="floating"
           helperText="Ingresa tu correo" errorText="Correo inválido" [clearInput]="true" ngModel>
           <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
         </ion-input>
       </ion-col>
       <ion-col class="noMargin" offset="1" size="10">
-        <ion-input mode="ios" class="ion-margin-top" type="password" fill="solid" label="Contraseña" labelPlacement="floating"
+        <ion-input formControlName="password" mode="ios" class="ion-margin-top" type="password" fill="solid" label="Contraseña" labelPlacement="floating"
           helperText="Ingresa tu contraseña" errorText="Contraseña inválida" [clearInput]="true" ngModel>
           <ion-icon slot="start" name="key" aria-hidden="true"></ion-icon>
         </ion-input>
@@ -46,11 +47,12 @@
 
     <ion-row class="btnSignup">
       <ion-col offset="1" size="10">
-        <ion-button strong ionBlur mode="ios" expand="block" fill="outline" shape="round" routerLink="/">
+        <ion-button strong ionBlur mode="ios" expand="block" fill="outline" shape="round" type="submit" [disabled]="registerForm.invalid">
           Registrarse
         </ion-button>
       </ion-col>
     </ion-row>
+  </form>
 
   </ion-grid>
 </ion-content>

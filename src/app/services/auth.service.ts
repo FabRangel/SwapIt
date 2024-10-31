@@ -12,4 +12,8 @@ export class AuthService {
   login(body:any){
     return this.http.post(`${APIURL}/login`, body);
  }
+
+ register(body:any){
+    return this.http.post(`${APIURL}/register`, body);
+ }
 }
