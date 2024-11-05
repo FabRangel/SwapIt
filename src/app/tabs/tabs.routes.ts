@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { authGuard } from '../guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -8,6 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'tab1',
+        canActivate: [authGuard],
         loadComponent: () =>
           import('../tab1/tab1.page').then((m) => m.Tab1Page),
       },

@@ -6,11 +6,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/inicio/inicio.page').then(m => m.InicioPage)
   },
   {
-    path: '',  
-    redirectTo: 'inicio',
-    pathMatch: 'full'
-  },
-  {
     path: '', 
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
@@ -37,7 +32,8 @@ export const routes: Routes = [
   {
     path: 'tab2-detail',
     loadComponent: () => import('./tab2-detail/tab2-detail.page').then( m => m.Tab2DetailPage)
-  },  {
+  },
+  {
     path: 'tab2-detail1',
     loadComponent: () => import('./tab2-detail1/tab2-detail1.page').then( m => m.Tab2Detail1Page)
   },
@@ -57,7 +53,11 @@ export const routes: Routes = [
     path: 'acept',
     loadComponent: () => import('./acept/acept.page').then( m => m.AceptPage)
   },
-
+  {
+    path: '',  
+    redirectTo: 'inicio',
+    pathMatch: 'full'
+  },
 
 
 ];

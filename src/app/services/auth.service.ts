@@ -16,4 +16,12 @@ export class AuthService {
  register(body:any){
     return this.http.post(`${APIURL}/register`, body);
  }
+
+  getToken(){
+    const token = localStorage.getItem('token');
+    if(token){
+      return token;
+    }
+    return null;
+  }
 }

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonInput, IonIcon, IonButton, IonText, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { eye, key, lockClosed, mail, logoFacebook, logoGithub, logoGoogle, eyeOff } from 'ionicons/icons';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   loginForm! : FormGroup;
   showPassword = false;
 
-  constructor(private fb: FormBuilder, private authS : AuthService) {
+  constructor(private fb: FormBuilder, private authS : AuthService, private route : Router) {
     addIcons({mail,key,eye,eyeOff,logoFacebook,logoGithub,logoGoogle,lockClosed});
     
     this.loginForm = this.fb.group({
@@ -39,8 +39,12 @@ export class LoginPage implements OnInit {
   login(){
    this.authS.login(this.loginForm.value).subscribe((response:any)=>{
       console.log(response);
+      localStorage.setItem('token', response.access_token);
+      localStorage.setItem('user', JSON.stringify(response.admin));
+      if(response.access_token){
+        this.route.navigateByUrl('tabs/tab1');
+      }
     })
-    //console.log(this.loginForm.value);
   }
 
 }
