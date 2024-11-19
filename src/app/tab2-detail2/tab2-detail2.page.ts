@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -15,10 +15,12 @@ import { Tab2Detail3Page } from '../tab2-detail3/tab2-detail3.page';
   imports: [IonicModule, FormsModule, CommonModule ]
 })
 export class Tab2Detail2Page implements OnInit {
-  title: string = '';
-  isNewProduct: boolean = false;
-  productWorks: boolean = true;
-  rating: number = 0;
+  is_new: boolean = false;
+  funcionality: number = 0;
+  @Input() category!: string;
+  @Input() description!: string;
+  @Input() name!: string;
+
   constructor(private modalCtrl: ModalController) {
     addIcons({chevronForwardOutline,chevronBackOutline, star,starOutline});
    }
@@ -26,30 +28,31 @@ export class Tab2Detail2Page implements OnInit {
     this.modalCtrl.dismiss();
   }
   submitForm() {
-    if (this.title.trim() === '') {
-      console.log('El título no puede estar vacío.');
-      return;
-    }
-
-    // Aquí puedes manejar lo que sucede al enviar el formulario
-    console.log('Título de la publicación:', this.title);
-
-    // Cerrar el modal después de enviar
+    
     this.modalCtrl.dismiss({
-      title: this.title
+      name: this.name
     });
   }
   rateProduct(stars: number) {
-    this.rating = stars;
+    this.funcionality = stars;
   }
   async openTab2Detail3() {
+    console.log("funcionality antes de abrir modal:", this.funcionality)
     this.modalCtrl.dismiss();
     const modal = await this.modalCtrl.create({
       component: Tab2Detail3Page,
+      componentProps: {
+        name: this.name,
+        description : this.description,
+        category: this.category,
+        funcionality: this.funcionality,
+        is_new: this.is_new,
+      }
     });
     return await modal.present();
   }
   ngOnInit() {
+    console.log('Datos recibidos:', this.category, this.name, this.description, this.funcionality, this.is_new);
   }
 
 }

@@ -7,17 +7,47 @@ import { ItemDetailComponent } from '../components/item-detail/item-detail.compo
 import { ItemOfferComponent } from "../components/item-offer/item-offer.component";
 import { MyProductsComponent } from '../components/my-products/my-products.component';
 import { MyOfferComponent } from '../components/my-offer/my-offer.component';
+import { ProductsService } from '../services/products.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   standalone: true,
-  imports: [MyOfferComponent,MyProductsComponent,ItemOfferComponent,ItemDetailComponent, IonSearchbar, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonToggle, ItemOfferComponent],
+  imports: [MyOfferComponent,MyProductsComponent,ItemOfferComponent,ItemDetailComponent, IonSearchbar, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonToggle, ItemOfferComponent, CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab1Page {
-  constructor() { 
+  products:any[] = [];
+  firstGroupedProducts:any[] = [];
+  secondGroupedProducts:any[] = [];
+  groupedProducts: any[][] = [];
+
+  constructor( private productS: ProductsService) { 
     addIcons({calendarOutline,heartCircleOutline,heartDislikeCircleOutline,heartDislike,earthOutline,tvOutline,shirtOutline,homeOutline,extensionPuzzleOutline,heart,earth,barbellOutline,call,globe,basket,barbell,trash,person,pin,star,tv,home,closeCircle,calendar,warning,trashBin,});
+    this.productS.getProducts().subscribe((res) => {
+      console.log(res);
+      if (res && Array.isArray(res)) {
+        this.products = res;
+        this.groupProductsInTwoSections();
+      }
+    });
   }
+
+  groupProductsInTwoSections() {
+    const midIndex = Math.ceil(this.products.length / 2);
+  
+    this.firstGroupedProducts = this.chunkProducts(this.products.slice(0, midIndex));
+    this.secondGroupedProducts = this.chunkProducts(this.products.slice(midIndex));
+  }
+  
+  chunkProducts(products: any[]) {
+    const chunked = [];
+    for (let i = 0; i < products.length; i += 3) {
+      chunked.push(products.slice(i, i + 3)); 
+    }
+    return chunked;
+  }
+  
 }

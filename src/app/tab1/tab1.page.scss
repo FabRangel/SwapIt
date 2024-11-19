@@ -106,3 +106,31 @@ ion-progress-bar{
   --background: #d6e4f5;
   --progress-background: #2d5fa1;
 }
+
+swiper-slide {
+  padding: 10px 0; 
+}
+
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 200px; 
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 768px) {
+  ion-col[size="4"] {
+    flex: 0 0 50%; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  ion-col[size="4"] {
+    flex: 0 0 100%; 
+  }
+}

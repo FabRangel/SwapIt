@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab2Page {
-
+  category!: string ;
   constructor(private modalCtrl: ModalController) {
     addIcons({headset,home, shirt, extensionPuzzle});
   }
@@ -29,4 +29,18 @@ export class Tab2Page {
     });
     return await modal.present();
   }
+  async selectCategory(category: string) {
+    this.category = category;
+    console.log('Categoría seleccionada: ', this.category);
+    this.modalCtrl.dismiss();
+    const modal = await this.modalCtrl.create({
+      component: Tab2DetailPage,
+      componentProps: {
+        category: this.category, 
+      },
+    });
+    return await modal.present();
+  }
+
+  
 }

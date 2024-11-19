@@ -1,11 +1,5 @@
-<ion-header>
-</ion-header>
-
 <ion-content>
   <ion-grid class="bgHome">
-    <br>
-    <br>
-    <br>
     <ion-row class="bgLogo">
       <ion-col size="auto" class="logo-col">
         <img tab="tab2" href="tab2" src="/assets/images/logo.png" alt="imagen de logo" class="logo-img">
@@ -13,65 +7,40 @@
     </ion-row>
     <div class="container">
       <div style="text-align: center; margin-bottom: 5px; color: black;">
-        <h2 style="font-size: 30px;"><strong>Publica tu producto
-        </strong>
-        </h2>
         <br>
         <br>
+        <h2 style="font-size: 30px;"><strong>Publica tu producto</strong></h2>
         <h5>Agrega hasta 5 fotos de tu producto</h5>
-        <br>
-        <br>
-        <ion-button size="default" style="color: rgb(255, 255, 255);">Cargar una imagen</ion-button>
+        
+        <!-- Botón de cargar imagen -->
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" multiple hidden id="fileInput">
+        <ion-button size="default" color="primary" (click)="triggerFileInput()">Cargar una imagen</ion-button>
       </div>
-      
     </div>
+
+    <!-- Fab buttons -->
     <ion-fab size="100" vertical="bottom">
-      <ion-fab-button (click)="dismissModal()" style="color: #2d5fa1;  margin-bottom: 220px; --background: #2d5fa1">
+      <ion-fab-button (click)="dismissModal()" style="color: #2d5fa1; margin-bottom: 220px; --background: #2d5fa1">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
     <ion-fab horizontal="end" vertical="bottom">
-      <ion-fab-button (click)="openAcept('success')" style="color: #2d5fa1;  margin-bottom: 220px; --background: #2d5fa1">
-        <ion-icon name="chevron-forward-outline"></ion-icon>
+      <ion-fab-button (click)="openAcept()" style="color: #2d5fa1; margin-bottom: 220px; --background: #2d5fa1">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+
+    <!-- Swiper para previsualización de imágenes -->
     <ion-row>
       <ion-col size="12">
         <swiper-container [slidesPerView]="3" [loop]="true">
-          <swiper-slide>
-            <ion-card class="custom-card" id="present-alert" >
-              <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-
-            </ion-card>
-          </swiper-slide>
-          <swiper-slide>
+          <swiper-slide *ngFor="let image of images">
             <ion-card class="custom-card">
-              <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-            </ion-card>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-card class="custom-card">
-              <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-            </ion-card>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-card class="custom-card" >
-              <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-            </ion-card>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-card class="custom-card">
-              <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-            </ion-card>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-card class="custom-card">
-              <img class="custom-image" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <img class="custom-image" [src]="image" alt="Imagen del producto" />
             </ion-card>
           </swiper-slide>
         </swiper-container>
       </ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>

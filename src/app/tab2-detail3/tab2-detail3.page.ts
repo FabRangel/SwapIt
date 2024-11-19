@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonFab, IonFabButton, IonLabel, IonItem } from '@ionic/angular/standalone';
@@ -15,22 +15,24 @@ import { Tab2Detail4Page } from '../tab2-detail4/tab2-detail4.page';
   imports: [IonicModule, FormsModule, CommonModule]
 })
 export class Tab2Detail3Page implements OnInit {
-  title: string = '';
+  @Input() name!: string;
+  @Input() category!: string;
+  @Input() description!: string;
+  @Input() funcionality!: number;
+  @Input() is_new!: boolean;
   selectedOption: string = '';
   options: string[] = ['Tecnología', 'Hogar', 'Ropa', 'Otros'];
-  selectedCategories: string[] = []; // Almacena las categorías seleccionadas
+  interest_categories: string[] = []; 
 
-  // Añadir la categoría seleccionada a la lista de chips
   addCategory() {
-    if (this.selectedOption && !this.selectedCategories.includes(this.selectedOption)) {
-      this.selectedCategories.push(this.selectedOption);
+    if (this.selectedOption && !this.interest_categories.includes(this.selectedOption)) {
+      this.interest_categories.push(this.selectedOption);
     }
     this.selectedOption = ''; 
   }
 
-  // Eliminar una categoría al hacer clic en el icono de cerrar
   removeCategory(category: string) {
-    this.selectedCategories = this.selectedCategories.filter(cat => cat !== category);
+    this.interest_categories = this.interest_categories.filter(cat => cat !== category);
   }
   constructor(private modalCtrl: ModalController) { 
     addIcons({chevronForwardOutline,chevronBackOutline, apertureOutline,close, bagCheckOutline,bagCheck});
@@ -39,24 +41,28 @@ export class Tab2Detail3Page implements OnInit {
     this.modalCtrl.dismiss();
   }
   submitForm() {
-    if (this.title.trim() === '') {
-      console.log('El título no puede estar vacío.');
-      return;
-    }
-    console.log('Título de la publicación:', this.title);
 
     this.modalCtrl.dismiss({
-      title: this.title
+      name: this.name
     });
   }
   async openTab2Detail4() {
     this.modalCtrl.dismiss();
     const modal = await this.modalCtrl.create({
       component: Tab2Detail4Page,
+      componentProps: {
+        name: this.name,
+        description : this.description,
+        category: this.category,
+        funcionality: this.funcionality,
+        is_new: this.is_new,
+        interest_categories: this.interest_categories
+      }
     });
     return await modal.present();
   }
   ngOnInit() {
+    console.log('Datos recibidos:', this.category, this.name, this.description, this.funcionality, this.is_new, this.interest_categories);
   }
 
 }

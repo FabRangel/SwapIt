@@ -26,7 +26,7 @@
         
         <br>
         
-        <ion-chip *ngFor="let category of selectedCategories" style="--background: #b8cbe4; --color: black;">
+        <ion-chip *ngFor="let category of interest_categories" style="--background: #b8cbe4; --color: black;">
           {{ category }}
           <ion-icon name="close" (click)="removeCategory(category)"></ion-icon>
         </ion-chip>

@@ -23,5 +23,12 @@ export class ModalAskingComponent  implements OnInit {
   close() {
     this.modalCtrl.dismiss();
   }
+  confirmAction() {
+    this.modalCtrl.dismiss({ confirmed: true });
+  }
+
+  cancelAction() {
+    this.modalCtrl.dismiss({ confirmed: false });
+  }
 
 }
