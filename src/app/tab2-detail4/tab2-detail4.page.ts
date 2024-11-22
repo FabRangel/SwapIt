@@ -7,11 +7,6 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonFabButton,
   NavController,
 } from '@ionic/angular/standalone';
 import { IonicModule, ModalController } from '@ionic/angular';
@@ -106,7 +101,7 @@ export class Tab2Detail4Page implements OnInit {
         .createProduct({
           name: this.name,
           category: this.category,
-          description: this.description,
+          description: this.description, 
           funcionality: this.funcionality,
           is_new: this.is_new,
           interest_categories: this.interest_categories.join(','),
