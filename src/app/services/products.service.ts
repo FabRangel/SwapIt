@@ -145,6 +145,14 @@ export class ProductsService {
       }
     });
   }
+
+  getRecentProducts() {
+    return this.http.get(`${APIURL}/products/recent`,{
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
   
   setNewFood(food:any){
     this.getNewFood.emit(food);

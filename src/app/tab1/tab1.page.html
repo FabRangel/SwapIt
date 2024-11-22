@@ -6,50 +6,34 @@
   <ion-grid class="bgHome">
     <ion-row>
       <ion-col size="12">
-        <ion-searchbar color="light" mode="ios" animated="true" placeholder="Busca algo" show-clear-button="always"
-          clear-icon="trash-bin"></ion-searchbar>
+        <ion-searchbar (ionInput)="onSearch($event)" color="light" mode="ios" animated="true" placeholder="Busca algo"
+          show-clear-button="always" clear-icon="trash-bin"></ion-searchbar>
       </ion-col>
     </ion-row>
 
     <ion-row class="sliderPrincipal">
       <ion-col offset="1" size="10">
-        <swiper-container [slidesPerView]="1" [loop]="true">
+        <swiper-container :effect="coverflow" :autoplay="true" 
+          :coverflowEffect="{
+      rotate: 180,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: false,
+    }" :modules="modules">
+          @for (item of recentProducts; track item.id) {
           <swiper-slide>
             <ion-row>
               <ion-col class="imgContainer" size="5">
-                <img src="https://m.media-amazon.com/images/I/81SI4loK+uL._AC_UF894,1000_QL80_.jpg" alt="imageProducto">
+                <img [src]="item.image1" alt="imagen Producto">
               </ion-col>
               <ion-col size="7">
                 <ion-text>
-                  <h1>Producto 1</h1>
+                  <h1>{{item.product_name}}</h1>
                   <ion-text><ion-icon name="calendar-outline"></ion-icon></ion-text>
-                  Hace 3 días <br>
-                  <ion-text color="danger"><ion-icon name="heart-circle-outline" ></ion-icon></ion-text>
-                  101
-                </ion-text><br>
-                <ion-segment mode="ios" value="like">
-                  <ion-segment-button  value="dislike">
-                    <ion-icon name="heart-dislike"></ion-icon>
-                  </ion-segment-button>
-                  <ion-segment-button value="like">
-                    <ion-icon name="heart"></ion-icon>
-                  </ion-segment-button>
-                </ion-segment>
-              </ion-col>
-            </ion-row>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-row>
-              <ion-col class="imgContainer" size="5">
-                <img src="https://m.media-amazon.com/images/I/81SI4loK+uL._AC_UF894,1000_QL80_.jpg" alt="imageProducto">
-              </ion-col>
-              <ion-col size="7">
-                <ion-text>
-                  <h1>Producto 2</h1>
-                  <ion-text><ion-icon name="calendar-outline"></ion-icon></ion-text>
-                  Hace 3 días <br>
+                  {{ calculateDaysAgo(item.product_created_at) }}. <br>
                   <ion-text color="danger"><ion-icon name="heart-circle-outline"></ion-icon></ion-text>
-                  101
+                  {{item.favorites_count}}
                 </ion-text><br>
                 <ion-segment mode="ios" value="like">
                   <ion-segment-button value="dislike">
@@ -62,52 +46,21 @@
               </ion-col>
             </ion-row>
           </swiper-slide>
-          <swiper-slide>
-            <ion-row>
-              <ion-col class="imgContainer" size="5">
-                <img src="https://m.media-amazon.com/images/I/81SI4loK+uL._AC_UF894,1000_QL80_.jpg" alt="imageProducto">
-              </ion-col>
-              <ion-col size="7">
-                <ion-text>
-                  <h1>Producto 3</h1>
-                  <ion-text><ion-icon name="calendar-outline"></ion-icon></ion-text>
-                  Hace 3 días <br>
-                  <ion-text color="danger"><ion-icon name="heart-circle-outline"></ion-icon></ion-text>
-                  101
-                </ion-text> <br>
-                <ion-segment mode="ios" value="like">
-                  <ion-segment-button value="dislike">
-                    <ion-icon name="heart-dislike"></ion-icon>
-                  </ion-segment-button>
-                  <ion-segment-button value="like">
-                    <ion-icon name="heart"></ion-icon>
-                  </ion-segment-button>
-                </ion-segment>
-              </ion-col>
-            </ion-row>
-          </swiper-slide>
+          }
         </swiper-container>
       </ion-col>
     </ion-row>
 
     <ion-row class="ion-padding-top">
-    <!-- <ion-chip mode="ios" class="chipHome">
-        <ion-label>Inicio</ion-label>
-        <ion-icon color="light" name="close-circle"></ion-icon>
-      </ion-chip>
-      <ion-chip mode="ios" class="chipCat">
-        <ion-label>Categorías</ion-label>
-        <ion-icon name="close-circle"></ion-icon>
-      </ion-chip>--> 
       <ion-col size="12">
-        <ion-segment 	swipe-gesture mode="ios" [scrollable]="true" value="todo">
+        <ion-segment swipe-gesture mode="ios" [scrollable]="true" value="todo" (ionChange)="onCategoryChange($event)">
           <ion-segment-button value="todo">
             <ion-icon name="earth-outline"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="electrodomesticos">
+          <ion-segment-button value="electronico">
             <ion-icon name="tv-outline"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="moda">
+          <ion-segment-button value="ropa">
             <ion-icon name="shirt-outline"></ion-icon>
           </ion-segment-button>
           <ion-segment-button value="hogar">
@@ -118,14 +71,14 @@
           </ion-segment-button>
         </ion-segment>
       </ion-col>
-      
+
     </ion-row>
 
-  <ion-row>
-    <ion-col size="12" class="ion-no-padding">
-      <ion-progress-bar></ion-progress-bar>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding">
+        <ion-progress-bar></ion-progress-bar>
+      </ion-col>
+    </ion-row>
 
     <ion-row>
       <ion-col size="12">
@@ -149,7 +102,7 @@
 
     <ion-row>
       <ion-col size="12">
-        <swiper-container [slidesPerView]="1" [loop]="true" >
+        <swiper-container [slidesPerView]="1" [loop]="true">
           <swiper-slide *ngFor="let productRow of secondGroupedProducts">
             <ion-row>
               <ion-col size="4" *ngFor="let product of productRow">
@@ -169,8 +122,35 @@
 
     <ion-row>
       <ion-col size="12">
-        <app-item-detail/>
+        <app-item-detail />
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<script>
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+
+  import 'swiper/css';
+
+  import 'swiper/css/effect-coverflow';
+  import 'swiper/css/effect-cube';
+  import 'swiper/css/effect-flip';
+  import 'swiper/css/pagination';
+
+  import './style.css';
+
+  import { EffectCoverflow, EffectCube, EffectFlip,  Pagination } from 'swiper/modules';
+
+  export default {
+    components: {
+      Swiper,
+      SwiperSlide,
+    },
+    setup() {
+      return {
+        modules: [EffectCoverflow,  EffectCube, EffectFlip, Pagination],
+      };
+    },
+  };
+</script>
