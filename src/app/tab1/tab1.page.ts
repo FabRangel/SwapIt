@@ -49,6 +49,7 @@ import { MyProductsComponent } from '../components/my-products/my-products.compo
 import { MyOfferComponent } from '../components/my-offer/my-offer.component';
 import { ProductsService } from '../services/products.service';
 import { CommonModule } from '@angular/common';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-tab1',
@@ -86,7 +87,7 @@ export class Tab1Page {
 
   ngOnInit() {}
 
-  constructor(private productS: ProductsService) {
+  constructor(private productS: ProductsService, private favoriteS: FavoritesService) {
     addIcons({
       calendarOutline,
       heartCircleOutline,
@@ -208,8 +209,34 @@ export class Tab1Page {
         product.description?.toLowerCase().includes(searchTerm) 
       );
     });
-  
-    // Actualizar agrupaciones
     this.updateGroupedProducts();
+  }
+  onFavoriteChange(event: any, product: any) {
+    const selectedValue = event.detail.value;
+  
+    if (selectedValue === 'like') {
+      this.addToFavorites(product);
+    } else if (selectedValue === 'dislike') {
+      this.removeFromFavorites(product);
+    }
+  }
+  
+  addToFavorites(product: any) {
+    console.log('Producto agregado a favoritos:', product);
+    const id_user = JSON.parse(localStorage.getItem('user') || '{}')?.id;
+    const id_product = product.product_id;
+    this.favoriteS.createFavorite({id_product, id_user}).subscribe(() => {
+      product.favorites_count += 1; 
+      console.log('Producto agregado a la lista de favoritos del usuario.');
+    });
+  }
+  
+  removeFromFavorites(product: any) {
+    console.log('Producto eliminado de favoritos:', product);
+    const id_product = product.product_id;
+    this.favoriteS.deleteFavorite(id_product).subscribe(() => {
+      product.favorites_count -= 1;
+      console.log('Producto eliminado de la lista de favoritos del usuario.');
+    });
   }
 }
