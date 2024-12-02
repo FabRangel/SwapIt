@@ -35,7 +35,7 @@
                   <ion-text color="danger"><ion-icon name="heart-circle-outline"></ion-icon></ion-text>
                   {{item.favorites_count}}
                 </ion-text><br>
-                <ion-segment mode="ios" value="like" (ionChange)="onFavoriteChange($event, item)">
+                <ion-segment mode="ios" [value]="item.isFavorited ? 'like' : 'dislike'" (ionChange)="onFavoriteChange($event, item)">
                   <ion-segment-button value="dislike">
                     <ion-icon name="heart-dislike"></ion-icon>
                   </ion-segment-button>

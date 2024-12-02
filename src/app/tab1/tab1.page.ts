@@ -87,7 +87,10 @@ export class Tab1Page {
 
   ngOnInit() {}
 
-  constructor(private productS: ProductsService, private favoriteS: FavoritesService) {
+  constructor(
+    private productS: ProductsService,
+    private favoriteS: FavoritesService
+  ) {
     addIcons({
       calendarOutline,
       heartCircleOutline,
@@ -123,27 +126,29 @@ export class Tab1Page {
       console.log(res);
       if (res && Array.isArray(res)) {
         this.products = res;
-        this.filteredProducts = this.products; 
+        this.filteredProducts = this.products;
         this.updateGroupedProducts();
       }
     });
     this.productS.getRecentProducts().subscribe((res) => {
       console.log(res);
       if (res && Array.isArray(res)) {
-        this.recentProducts = res;
+        this.recentProducts = res.map((product) => ({
+          ...product,
+          isFavorited: product.isFavorited || false, 
+        }));
       }
     });
   }
 
   groupProductsInTwoSections() {
-    const midIndex = Math.ceil(this.products.length / 2);
-
-    this.firstGroupedProducts = this.chunkProducts(
-      this.products.slice(0, midIndex)
-    );
-    this.secondGroupedProducts = this.chunkProducts(
-      this.products.slice(midIndex)
-    );
+      const midIndex = Math.floor(this.products.length / 2);  
+      this.firstGroupedProducts = this.chunkProducts(
+        this.products.slice(0, midIndex)
+      );
+      this.secondGroupedProducts = this.chunkProducts(
+        this.products.slice(midIndex)
+      );
   }
 
   chunkProducts(products: any[]) {
@@ -181,13 +186,13 @@ export class Tab1Page {
   }
 
   updateGroupedProducts() {
-    const grouped = this.groupProducts(this.filteredProducts);
-    this.firstGroupedProducts = grouped.slice(0, Math.ceil(grouped.length / 2));
-    this.secondGroupedProducts = grouped.slice(Math.ceil(grouped.length / 2));
+    const midIndex = Math.floor(this.filteredProducts.length / 2);
+  this.firstGroupedProducts = this.chunkProducts(this.filteredProducts.slice(0, midIndex));
+  this.secondGroupedProducts = this.chunkProducts(this.filteredProducts.slice(midIndex));
   }
 
   groupProducts(products: any[]) {
-    const groupSize = 3; // Número de productos por fila
+    const groupSize = 3;
     const grouped = [];
     for (let i = 0; i < products.length; i += groupSize) {
       grouped.push(products.slice(i, i + groupSize));
@@ -197,45 +202,60 @@ export class Tab1Page {
 
   onSearch(event: any) {
     const searchTerm = event.target.value?.toLowerCase() || '';
-  
+
     if (!searchTerm) {
       this.onCategoryChange({ detail: { value: this.selectedCategory } });
       return;
     }
     this.filteredProducts = this.products.filter((product) => {
       return (
-        product.name.toLowerCase().includes(searchTerm) || 
-        product.category.toLowerCase().includes(searchTerm) || 
-        product.description?.toLowerCase().includes(searchTerm) 
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm) ||
+        product.description?.toLowerCase().includes(searchTerm)
       );
     });
     this.updateGroupedProducts();
   }
+
   onFavoriteChange(event: any, product: any) {
+    console.log('Evento de favorito:', event.detail.value);
+    console.log('Estado inicial del producto:', product);
+  
     const selectedValue = event.detail.value;
   
-    if (selectedValue === 'like') {
-      this.addToFavorites(product);
-    } else if (selectedValue === 'dislike') {
-      this.removeFromFavorites(product);
+    if (selectedValue === 'like' && !product.updatingFavorite) {
+      product.updatingFavorite = true;
+      this.addToFavorites(product).add(() => {
+        product.updatingFavorite = false; 
+      });
+    } else if (selectedValue === 'dislike' && !product.updatingFavorite) {
+      product.updatingFavorite = true;
+      this.removeFromFavorites(product).add(() => {
+        product.updatingFavorite = false; 
+        
+      });
     }
   }
-  
+
   addToFavorites(product: any) {
-    console.log('Producto agregado a favoritos:', product);
     const id_user = JSON.parse(localStorage.getItem('user') || '{}')?.id;
     const id_product = product.product_id;
-    this.favoriteS.createFavorite({id_product, id_user}).subscribe(() => {
-      product.favorites_count += 1; 
-      console.log('Producto agregado a la lista de favoritos del usuario.');
-    });
+
+    return this.favoriteS
+      .createFavorite({ id_product, id_user })
+      .subscribe(() => {
+        product.favorites_count += 1;
+        product.isFavorited = true; 
+        console.log('Producto agregado a la lista de favoritos del usuario.');
+      });
   }
-  
+
   removeFromFavorites(product: any) {
-    console.log('Producto eliminado de favoritos:', product);
     const id_product = product.product_id;
-    this.favoriteS.deleteFavorite(id_product).subscribe(() => {
+
+    return this.favoriteS.deleteFavorite(id_product).subscribe(() => {
       product.favorites_count -= 1;
+      product.isFavorited = false; 
       console.log('Producto eliminado de la lista de favoritos del usuario.');
     });
   }

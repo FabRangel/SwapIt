@@ -1,77 +1,4 @@
- <!-- <ion-header [translucent]="true">
-  
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-grid class="bgHome">
-    <br>
-    <br>
-    <br>
-    <br>
-    <ion-title text-center style="font-size: 44px; font-weight: bold; text-align: center;">
-      <ion-text>Publicación</ion-text>
-    </ion-title>
-    <br>
-    <br>
-
-    <ion-grid style="background-color: #ACEDFF;">
-      <ion-row>
-        <ion-col><img src=""></ion-col>
-        <ion-col><h1>USUARIO</h1></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col></ion-col><ion-icon name="bag-check"></ion-icon>
-        <ion-col>#</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
-        </ion-col>
-        
-      </ion-row>
-    </ion-grid>
-
-    <ion-row>
-      <ion-col><ion-button color="primary" shape="round">MIS PUBLICACIONES</ion-button></ion-col>
-      <ion-col><ion-button color="tertiary" shape="round">MIS OFERTAS</ion-button></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col><ion-button color="success">
-        <ion-icon slot="end" name="close-circle"></ion-icon>
-        Activas
-      </ion-button></ion-col>
-      <ion-col><ion-button color="danger">
-        <ion-icon slot="end" name="close-circle"></ion-icon>
-        En pausa
-      </ion-button></ion-col>
-      <ion-col><ion-button color="warning">
-        <ion-icon slot="end" name="close-circle"></ion-icon>
-        Finalizadas
-      </ion-button></ion-col>
-    </ion-row>
-
-    <ion-grid>
-      <ion-card>
-        <ion-card-content>
-          <img src="">
-          <ion-card-header>
-            <ion-card-title>Producto 1</ion-card-title>
-            <ion-card-subtitle>Nuevo</ion-card-subtitle>
-            <ion-card-subtitle>Ofertas</ion-card-subtitle>
-            <ion-card-subtitle>Fecha</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card-content>
-      </ion-card>
-    </ion-grid>
-  </ion-grid>
-
-  
-</ion-content> -->
- <ion-header [translucent]="true"></ion-header>
+<ion-header [translucent]="true"></ion-header>
 
 <ion-content [fullscreen]="true">
 
@@ -132,17 +59,17 @@
 
     <ion-row *ngIf="selectedSegment === 'publicaciones'">
       <ion-col size="12" class="ion-text-left">
-        <ion-chip class="chip-accepted" mode="ios">
+        <ion-chip class="chip-accepted" mode="ios"   (click)="toggleStatusFilter('activa')">
           <ion-label>Activas</ion-label>
-          <ion-icon name="close-circle" color="medium"></ion-icon>
+          <ion-icon  *ngIf="isStatusActive('activa')" name="close-circle" color="medium"></ion-icon>
         </ion-chip>
-        <ion-chip class="chip-rejected" mode="ios">
+        <ion-chip class="chip-rejected" mode="ios" (click)="toggleStatusFilter('finalizada')" >
           <ion-label>Finalizadas</ion-label>
-          <ion-icon name="close-circle"></ion-icon>
+          <ion-icon  *ngIf="isStatusActive('finalizada')" name="close-circle"></ion-icon>
         </ion-chip>
-        <ion-chip class="chip-offered" mode="ios">
+        <ion-chip class="chip-offered" mode="ios" (click)="toggleStatusFilter('en pausa')"> 
           <ion-label>En pausa</ion-label>
-          <ion-icon name="close-circle"></ion-icon>
+          <ion-icon  *ngIf="isStatusActive('en pausa')" name="close-circle"></ion-icon>
         </ion-chip>
       </ion-col>
     </ion-row>
@@ -167,18 +94,18 @@
     <ion-row *ngIf="selectedSegment === 'publicaciones'">
       <ion-col size="12" style="max-height: 50vh; overflow-y: auto;">
         <ion-list>
-          @for (item of publicaciones; track $index) {
+          @for (item of filteredPublicaciones; track item.id) {
           <ion-item [ngClass]="getItemClass(item.status)" id="my-product">
             <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img alt="Silhouette of mountains" [src]="item.image1" />
             </ion-thumbnail>
             <div style="display: flex; flex-direction: column;;">
               <ion-label>{{item.name}}</ion-label>
-              <p style="font-size: 12px; margin: 3px;">{{item.quality}}</p>
-              <p style="font-size: 12px; margin:3px">{{item.offers}} ofertas</p>
+              <p style="font-size: 12px; margin: 3px;">{{item.is_new ? 'Nuevo' : 'Usado'}}</p>
+              <p style="font-size: 12px; margin:3px">{{item.offers_count}} ofertas</p>
             </div>
             <ion-text style="right: 10px; position: absolute; font-size: 12px;" color="medium">
-              <p>{{item.date}}</p>
+              <p>{{ item.created_at | date: 'yyyy-MM-dd' }}</p>
             </ion-text>
           </ion-item>
           }

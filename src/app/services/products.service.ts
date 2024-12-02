@@ -91,7 +91,7 @@ export class ProductsService {
   }
 
   getProductsByUser(id: number){
-    return this.http.get(`${APIURL}/users/${id}/products`,{
+    return this.http.get(`${APIURL}/products/user/${id}`,{
       headers:{
         Authorization: `Bearer ${this.tk}`
       }
@@ -154,9 +154,28 @@ export class ProductsService {
     });
   }
   
-  setNewFood(food:any){
-    this.getNewFood.emit(food);
+  getProductsCountbyUser(id: number){
+    return this.http.get(`${APIURL}/products/user-count/${id}`,{
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
   }
-  
+
+  getOfferCountbyProduct(id: number){
+    return this.http.get(`${APIURL}/products/offer-count/${id}`,{
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
+
+  getProductsWithOffersCount(id: number){
+    return this.http.get(`${APIURL}/products/with-offer-count/${id}`,{
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
 
 }
