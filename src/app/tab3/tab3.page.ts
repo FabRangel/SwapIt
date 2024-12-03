@@ -24,6 +24,8 @@ export class Tab3Page {
   ofertas: any[] = [];
   selectedStatusFilter: string[] = ['activa', 'finalizada', 'en pausa'];
   filteredPublicaciones: any[] = []; 
+  selectedStatusFilterOffer: string[] = ['aceptada', 'rechazada', 'en curso'];
+  filteredOffers: any[] = []; 
   selectedSegment: string = 'publicaciones';
   user: any = {};
   count: number = 0;
@@ -48,9 +50,24 @@ export class Tab3Page {
 
     // Cargar ofertas
     this.offerS.getOffersByUser(id_user).subscribe((data: any) => {
-      console.log('Offers loaded:', data);
       this.ofertas = data;
+
+      console.log('Offers loaded:', this.ofertas);
+      this.ofertas.forEach((oferta) => {
+        this.productsS.getProduct(oferta.id_product).subscribe((productData: any) => {
+          oferta.productData = productData; // Asociar el producto con la oferta
+          console.log('Updated Offer with Product Data:', oferta);
+        });
+      });
+      this.ofertas.forEach((oferta) => {
+        this.productsS.getProduct(oferta.id_product_offered).subscribe((productData: any) => {
+          oferta.productOferedData = productData; // Asociar el producto con la oferta
+          console.log('Updated Offer with Product Offered Data:', oferta);
+        });
+      });
+      this.filterOffer();
     });
+
 
     // Cargar usuario
     this.usersS.getUser(id_user).subscribe((data: any) => {
@@ -66,7 +83,7 @@ export class Tab3Page {
   }
 
   ngOnInit() {
-    
+
   }
 
   onSegmentChanged(event: any) {
@@ -76,13 +93,13 @@ export class Tab3Page {
   getItemClass(status: string): string {
     switch (status) {
       case 'activa':
-      case 'aceptado':
+      case 'aceptada':
         return 'item-accepted';
       case 'en pausa':
-      case 'curso':
+      case 'en curso':
         return 'item-paused';
       case 'finalizada':
-      case 'rechazado':
+      case 'rechazada':
         return 'item-rejected';
       default:
         return '';
@@ -141,5 +158,37 @@ export class Tab3Page {
     });
 
     await modal.present();
+  }
+
+  //Filtrar ofertas
+  toggleStatusFilterOffer(status: string) {
+    const index = this.selectedStatusFilterOffer.indexOf(status);
+    if (index > -1) {
+      this.selectedStatusFilterOffer.splice(index, 1);
+    } else {
+      this.selectedStatusFilterOffer.push(status);
+    }
+
+    console.log('Selected Filters:', this.selectedStatusFilterOffer);
+    this.filterOffer();
+  }
+
+  isStatusActiveOffer(status: string): boolean {
+    return this.selectedStatusFilterOffer.includes(status);
+  }
+
+  filterOffer() {
+    console.log('Before Filter:', this.ofertas);
+
+    if (this.selectedStatusFilterOffer.length === 0) {
+      this.filteredOffers = this.ofertas; // Si no hay filtros activos, muestra todo
+      return;
+    }
+
+    this.filteredOffers = this.ofertas.filter(item =>
+      this.selectedStatusFilterOffer.includes(item.status_offer)
+    );
+    
+    console.log('After Filter:', this.filteredOffers);
   }
 }

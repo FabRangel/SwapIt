@@ -76,17 +76,17 @@
 
     <ion-row *ngIf="selectedSegment === 'ofertas'">
       <ion-col size="12" class="ion-text-left">
-        <ion-chip class="chip-accepted" mode="ios">
+        <ion-chip class="chip-accepted" mode="ios" (click)="toggleStatusFilterOffer('aceptada')"  >
           <ion-label>Aceptadas</ion-label>
-          <ion-icon name="close-circle" color="medium"></ion-icon>
+          <ion-icon *ngIf="isStatusActiveOffer('aceptada')" name="close-circle" color="medium"></ion-icon>
         </ion-chip>
-        <ion-chip class="chip-rejected" mode="ios">
+        <ion-chip class="chip-rejected" mode="ios" (click)="toggleStatusFilterOffer('rechazada')">
           <ion-label>Rechazadas</ion-label>
-          <ion-icon name="close-circle"></ion-icon>
+          <ion-icon *ngIf="isStatusActiveOffer('rechazada')"  name="close-circle"></ion-icon>
         </ion-chip>
-        <ion-chip class="chip-offered" mode="ios">
+        <ion-chip class="chip-offered" mode="ios" (click)="toggleStatusFilterOffer('en curso')" >
           <ion-label>En curso</ion-label>
-          <ion-icon name="close-circle"></ion-icon>
+          <ion-icon *ngIf="isStatusActiveOffer('en curso')" name="close-circle"></ion-icon>
         </ion-chip>
       </ion-col>
     </ion-row>
@@ -116,18 +116,18 @@
     <ion-row *ngIf="selectedSegment === 'ofertas'" id="open-offer">
       <ion-col size="12" style="max-height: 50vh; overflow-y: auto;">
         <ion-list>
-          @for (item of ofertas; track item.id) {
-          <ion-item [ngClass]="getItemClass(item.status)"  (click)="openMyOffer()">
+          @for (item of filteredOffers; track item.id) {
+          <ion-item [ngClass]="getItemClass(item.status_offer)"  (click)="openMyOffer()">
             <ion-thumbnail slot="start">
               <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
             </ion-thumbnail>
             <div style="display: flex; flex-direction: column;;">
-              <ion-label>{{item.name}}</ion-label>
-              <p style="font-size: 12px; margin: 3px;">{{item.quality}}</p>
-              <p style="font-size: 12px; margin:3px">{{item.offer}}</p>
+              <ion-label>{{item.productData.name}}</ion-label>
+              <p style="font-size: 12px; margin: 3px;">{{item.productData.is_new ? 'Nuevo' : 'Usado'}}</p>
+              <p style="font-size: 12px; margin:3px">{{item.productOferedData.name}}</p>
             </div>
             <ion-text style="right: 10px; position: absolute; font-size: 12px;" color="medium">
-              <p>{{item.date}}</p>
+              <p>{{item.created_at | date: 'yyyy-MM-dd'}}</p>
             </ion-text>
           </ion-item>
           }
