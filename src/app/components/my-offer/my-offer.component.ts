@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IonCol, IonModal, IonGrid, IonToolbar, IonButtons, IonButton, IonIcon, IonRow, IonAvatar, IonText, IonChip, IonLabel, IonList, IonItem, IonItemSliding, IonItemOptions, IonItemOption, IonListHeader, ModalController } from "@ionic/angular/standalone";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonCol, IonModal, IonGrid, IonToolbar, IonButtons, IonButton, IonIcon, IonRow, IonAvatar, IonText, IonChip, IonLabel, IonList, IonItem, IonItemSliding, IonItemOptions, IonItemOption, IonListHeader, ModalController} from "@ionic/angular/standalone";
 import { ModalAskingComponent } from '../modal-asking/modal-asking.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { ModalAskingComponent } from '../modal-asking/modal-asking.component';
   imports: [ModalAskingComponent,IonListHeader, IonItemOption, IonItemOptions, IonItemSliding, IonItem, IonList, IonLabel, IonChip, IonText, IonAvatar, IonRow, IonIcon, IonButton, IonButtons, IonToolbar, IonGrid, IonModal, IonCol, ],
 })
 export class MyOfferComponent  implements OnInit {
-
+  @ViewChild('modal') modal!: IonModal;
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {}

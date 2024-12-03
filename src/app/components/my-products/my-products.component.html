@@ -1,82 +1,82 @@
+<ion-grid fixed>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon color="danger" size="large" slot="icon-only" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-row>
+    <ion-col offset="1" size="2">
+      <ion-avatar>
+        <img alt="Imagen del producto" [src]="producto.image1" />
+      </ion-avatar>
+    </ion-col>
+    <ion-col size="3">
+      <ion-text>
+        <h3>{{producto.name}}</h3>
+      </ion-text>
+    </ion-col>
+    <ion-col size="5">
+      <div style="display: flex; flex-direction: column; justify-content: center; text-align: right; height: 100%;">
+        <p style="margin: 0;">{{producto.is_new ? 'Nuevo' : 'Usado'}}</p>
+      </div>
+    </ion-col>
+  </ion-row>
 
-<ion-modal mode="ios" #modal trigger="my-product" canDismiss="true" class="my-modal" >
-  <ng-template>
-      <ion-grid fixed>
-        <ion-toolbar>
-          <ion-buttons slot="end">
-            <ion-button (click)="modal.dismiss()">
-              <ion-icon color="danger" size="large" slot="icon-only" name="close-circle-outline" ></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-        <ion-row>
-          <ion-col offset="1" size="2">
-            <ion-avatar>
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-            </ion-avatar>
-          </ion-col>
-          <ion-col size="3">
-            <ion-text>
-              <h3>Title</h3>
-            </ion-text>
-          </ion-col>
-          <ion-col size="5">
-            <div
-              style="display: flex; flex-direction: column; justify-content: center; text-align: right; height: 100%;">
-              <p style="margin: 0;">Calidad</p>
-            </div>
-          </ion-col>
-        </ion-row>
+  <ion-row class="ion-text-center">
+    <ion-col size="12">
+      <ion-chip *ngFor="let category of acceptedCategories" color="medium" mode="ios">
+        <ion-label>{{ category }}</ion-label>
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col offset="1" size="10">
+      <ion-list>
+        <!-- Mostrar mensaje si no hay ofertas -->
+        <div *ngIf="offers.length === 0">
+          <ion-item lines="none">
+            <ion-label class="ion-text-center">
+              <p>Ups, parece que tu artículo aún no tiene ofertas, sigamos esperando ...</p>
+            </ion-label>
+          </ion-item>
+        </div>
 
-        <ion-row class="ion-text-center">
-          <ion-col size="12">
-            <ion-chip color="medium" mode="ios">
-              <ion-label>Hogar</ion-label>
-              <ion-icon name="close-circle"></ion-icon>
-            </ion-chip>
-            <ion-chip  color="medium" mode="ios">
-              <ion-label>Electrónicos</ion-label>
-              <ion-icon name="close-circle"></ion-icon>
-            </ion-chip>
-            <ion-chip  color="medium" mode="ios">
-              <ion-label>Ropa</ion-label>
-              <ion-icon name="close-circle"></ion-icon>
-            </ion-chip>
-          </ion-col>
-        </ion-row>
+        <!-- Mostrar la lista de ofertas si existen -->
+        <div *ngIf="offers.length > 0">
+          <ion-item *ngFor="let item of offers; trackBy: trackById">
+            <ion-label>
+              <div style="display: flex; justify-content: space-between;">
+                <span>{{ item.name }}</span>
+                <p class="quality-text">{{ item.date }}</p>
+              </div>
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-col>
+  </ion-row>
 
-        <ion-row>
-          <ion-col offset="1" size="10">
-            <ion-list>
-              @for (item of offers; track $index) {
-                <ion-item>
-                  <ion-label>
-                    <div style="display: flex; justify-content: space-between;">
-                      <span>{{item.name}}</span>
-                      <p class="quality-text">{{item.date}}</p>
-                    </div>
-                  </ion-label>
-                </ion-item>
-            }
-            </ion-list>
-          </ion-col>
-        </ion-row>
-        
-        <ion-row>
-          <ion-col size="4">
-            <ion-button (click)="openModal('finalizar')"  mode="ios" expand="block" fill="outline" color="danger">Finalizar</ion-button>
-          </ion-col>
-          <ion-col size="4">
-            <ion-button (click)="openModal('pausar')"   mode="ios" expand="block" fill="outline" color="warning">
-              Pausar
-            </ion-button>
-          </ion-col>
-          <ion-col size="4">
-            <ion-button (click)="openExchangeOptions()" mode="ios" expand="block" fill="outline" color="success">
-              Intercambio
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  </ng-template>
-</ion-modal>
+  <ion-row>
+    <ion-col size="4">
+      <ion-button (click)="producto.status === 'en pausa' ? updateStatusToActive() : openModal('pausar')" mode="ios" expand="block" 
+      [color]="producto.status === 'finalizada' ? 'success' : 'danger'">
+        {{ producto.status === 'finalizada' ? 'Reactivar' : 'Finalizar' }}
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button (click)="producto.status === 'en pausa' ? updateStatusToActive() : openModal('pausar')" mode="ios"
+        expand="block"  [color]="producto.status === 'en pausa' ? 'success' : 'warning'">
+        {{ producto.status === 'en pausa' ? 'Reactivar' : 'Pausar' }}
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button (click)="openExchangeOptions()" mode="ios" expand="block" color="success"
+        [disabled]="offers.length === 0">
+        Intercambio
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -14,6 +14,7 @@ export class ModalAskingComponent  implements OnInit {
   @Input() askType: 'finalizar' | 'pausar' = 'finalizar';
   @Input() title: string = '¿Realmente desea finalizar esta oferta?';
   @Input() subtitle: string = 'Esta acción es irreversible.';
+  @Input() productID: number = 0;
   
   constructor(private modalCtrl : ModalController) {
       addIcons({closeCircleOutline}); }

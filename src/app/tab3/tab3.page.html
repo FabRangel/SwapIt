@@ -26,21 +26,21 @@
       </ion-col>
       <ion-col size="7">
         <ion-text color="medium" style="margin-bottom: 0; padding-bottom: 0;">
-          <p style="margin:0">Juan Carlos Villa Robles</p>
+          <p style="margin:0">{{ user.name }}</p>
         </ion-text>
         <ion-text color="medium" class="ion-align-items-center"
           style="display: flex; justify-content: start; ; margin-bottom: 0;">
           <ion-icon name="bag" size="large"></ion-icon>
-          <p style="margin:0">31</p>
+          <p style="margin:0">  {{count}}</p>
         </ion-text>
-        <ion-item lines="none" class="ion-text-center ion-no-padding ion-no-margin stars"
+        <!-- <ion-item lines="none" class="ion-text-center ion-no-padding ion-no-margin stars"
           style="margin: 0; padding: 0 !important;">
           <ion-icon size="small" name="star" color="medium" style="margin:0"></ion-icon>
           <ion-icon size="small" name="star" color="medium"></ion-icon>
           <ion-icon size="small" name="star" color="medium"></ion-icon>
           <ion-icon size="small" name="star" color="medium"></ion-icon>
           <ion-icon size="small" name="star-outline" color="medium"></ion-icon>
-        </ion-item>
+        </ion-item> -->
       </ion-col>
     </ion-row>
 
@@ -95,7 +95,7 @@
       <ion-col size="12" style="max-height: 50vh; overflow-y: auto;">
         <ion-list>
           @for (item of filteredPublicaciones; track item.id) {
-          <ion-item [ngClass]="getItemClass(item.status)" id="my-product">
+          <ion-item [ngClass]="getItemClass(item.status)" (click)="openMyProduct(item.id)">
             <ion-thumbnail slot="start">
               <img alt="Silhouette of mountains" [src]="item.image1" />
             </ion-thumbnail>
@@ -109,11 +109,6 @@
             </ion-text>
           </ion-item>
           }
-          <ion-row>
-            <ion-col size="12">
-              <app-my-products/>
-            </ion-col>
-          </ion-row>
         </ion-list>
       </ion-col>
     </ion-row>
@@ -121,8 +116,8 @@
     <ion-row *ngIf="selectedSegment === 'ofertas'" id="open-offer">
       <ion-col size="12" style="max-height: 50vh; overflow-y: auto;">
         <ion-list>
-          @for (item of ofertas; track $index) {
-          <ion-item [ngClass]="getItemClass(item.status)">
+          @for (item of ofertas; track item.id) {
+          <ion-item [ngClass]="getItemClass(item.status)"  (click)="openMyOffer()">
             <ion-thumbnail slot="start">
               <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
             </ion-thumbnail>
@@ -136,11 +131,6 @@
             </ion-text>
           </ion-item>
           }
-          <ion-row>
-            <ion-col size="12">
-              <app-my-offer/>
-            </ion-col>
-          </ion-row>
         </ion-list>
       </ion-col>
     </ion-row>

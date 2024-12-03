@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonText, IonCard, IonCol, IonRow, IonIcon, IonButton, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCardContent, IonChip, IonLabel, IonList, IonAvatar, IonItem, IonSegment, IonSegmentButton, IonThumbnail } from '@ionic/angular/standalone';
+import { Component, OnInit } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonText, IonCard, IonCol, IonRow, IonIcon, IonButton, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCardContent, IonChip, IonLabel, IonList, IonAvatar, IonItem, IonSegment, IonSegmentButton, IonThumbnail, ModalController } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
 import { bagCheck, closeCircle, star, starOutline, heart, logoIonic, bag, closeCircleOutline } from 'ionicons/icons';
@@ -9,6 +9,7 @@ import { MyOfferComponent } from '../components/my-offer/my-offer.component';
 import { ProductsService } from '../services/products.service';
 import { DatePipe } from '@angular/common';
 import { OffersService } from '../services/offers.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-tab3',
@@ -24,10 +25,14 @@ export class Tab3Page {
   selectedStatusFilter: string[] = ['activa', 'finalizada', 'en pausa'];
   filteredPublicaciones: any[] = []; 
   selectedSegment: string = 'publicaciones';
+  user: any = {};
+  count: number = 0;
 
   constructor(
     private productsS: ProductsService,
     private offerS: OffersService,
+    private usersS: UsersService,
+    private modalCtrl: ModalController,
     private datePipe: DatePipe
   ) {
     addIcons({ bag, logoIonic, heart, closeCircle, bagCheck, starOutline, star, closeCircleOutline });
@@ -46,10 +51,22 @@ export class Tab3Page {
       console.log('Offers loaded:', data);
       this.ofertas = data;
     });
+
+    // Cargar usuario
+    this.usersS.getUser(id_user).subscribe((data: any) => {
+      console.log('User loaded:', data);
+      this.user = data;
+    });
+
+    // Cargar contador de productos
+    this.productsS.getProductsCountbyUser(id_user).subscribe((data: any) => {
+      console.log('Products count:', data);
+      this.count = data;
+    });
   }
 
   ngOnInit() {
-    // No necesitas llamar a filterPublicaciones aquí si se llama después de cargar los datos
+    
   }
 
   onSegmentChanged(event: any) {
@@ -102,5 +119,27 @@ export class Tab3Page {
     );
 
     console.log('After Filter:', this.filteredPublicaciones);
+  }
+
+  async openMyOffer() {
+    const modal = await this.modalCtrl.create({
+      component: MyOfferComponent,
+     
+    });
+
+    await modal.present();
+  }
+
+  async openMyProduct(productId: number) {
+    const modal = await this.modalCtrl.create({
+      component: MyProductsComponent,
+      cssClass: 'my-modal',
+      showBackdrop: false,
+      componentProps: {
+        productId: productId
+      }
+    });
+
+    await modal.present();
   }
 }
