@@ -33,5 +33,30 @@ export class OffersService {
       }
     });
   }
+
+  getOffer(offer_id: number){
+    return this.http.get(`${APIURL}/${offer_id}`,{
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
    
+
+  updateOffer(offer_id: number, body: any){
+    return this.http.put(`${APIURL}/${offer_id}`, body, {
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
+
+  deleteOffer(offer_id: number){
+    return this.http.delete(`${APIURL}/${offer_id}`, {
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
+  
 }

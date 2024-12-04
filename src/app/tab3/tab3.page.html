@@ -117,9 +117,9 @@
       <ion-col size="12" style="max-height: 50vh; overflow-y: auto;">
         <ion-list>
           @for (item of filteredOffers; track item.id) {
-          <ion-item [ngClass]="getItemClass(item.status_offer)"  (click)="openMyOffer()">
+          <ion-item [ngClass]="getItemClass(item.status_offer)"  (click)="openMyOffer(item.id)">
             <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img alt="Imagen del producto" [src]="item.productData.image1" />
             </ion-thumbnail>
             <div style="display: flex; flex-direction: column;;">
               <ion-label>{{item.productData.name}}</ion-label>

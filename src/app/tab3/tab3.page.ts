@@ -138,10 +138,14 @@ export class Tab3Page {
     console.log('After Filter:', this.filteredPublicaciones);
   }
 
-  async openMyOffer() {
+  async openMyOffer(offerId: number) {
     const modal = await this.modalCtrl.create({
       component: MyOfferComponent,
-     
+      cssClass: 'my-modal',
+      showBackdrop: false,
+      componentProps: {
+        offerId: offerId
+      }
     });
 
     await modal.present();
