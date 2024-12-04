@@ -104,7 +104,7 @@ export class Tab2Detail4Page implements OnInit {
           description: this.description, 
           funcionality: this.funcionality,
           is_new: this.is_new,
-          interest_categories: this.interest_categories.join(','),
+          interest_categories: this.interest_categories,
           ...productImages,
           id_user: userId,
         })
@@ -123,8 +123,8 @@ export class Tab2Detail4Page implements OnInit {
                       : '¡Error al publicar!',
                   subtitle:
                     response.name
-                      ? 'Tu oferta ha sido publicada exitosamente.'
-                      : 'Hubo un error al publicar tu oferta. Por favor, intenta de nuevo.',
+                      ? 'Tu producto ha sido publicada exitosamente.'
+                      : 'Hubo un error al publicar tu producto. Por favor, intenta de nuevo.',
                 },
               });
               await resultModal.present();
@@ -154,7 +154,7 @@ export class Tab2Detail4Page implements OnInit {
               resultType: 'error',
               title: '¡Error al publicar!',
               subtitle:
-                'Hubo un problema al intentar publicar tu oferta. Por favor, verifica tu conexión e inténtalo de nuevo.',
+                'Hubo un problema al intentar publicar tu producto. Por favor, verifica tu conexión e inténtalo de nuevo.',
             },
           });
           await errorModal.present();

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonCol, IonCard, IonCardSubtitle, IonCardHeader, IonRow, IonList, IonItem, IonText, IonGrid, IonCardTitle, IonCardContent, IonLabel, IonChip, IonIcon } from '@ionic/angular/standalone';
-import { add, closeCircle } from 'ionicons/icons';
+import { add, closeCircle, notifications } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { NotificationService } from '../services/notification.service';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-tab4',
@@ -13,62 +15,25 @@ import { addIcons } from 'ionicons';
   imports: [IonIcon, IonChip, IonLabel, IonCardContent, IonCardTitle, IonGrid, IonText, IonItem, IonList, IonRow, IonCardHeader, IonCardSubtitle, IonCard, IonCol, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class Tab4Page implements OnInit {
-  products = [
-    {
-      id: 1,
-      name: 'Producto 1',
-      quality: 'Nuevo',
-      status: 'Aceptado',
-    },
-    {
-      id: 2,
-      name: 'Producto 2',
-      quality: 'Seminuevo',
-      status: 'Rechazado',
-    },
-    {
-      id: 3,
-      name: 'Producto 3',
-      quality: 'Nuevo',
-      status: 'Oferta',
-    },
-    {
-      id: 4,
-      name: 'Producto 4',
-      quality: 'Nuevo',
-      status: 'Aceptado',
-    },
-    {
-      id: 5,
-      name: 'Producto 5',
-      quality: 'Seminuevo',
-      status: 'Rechazado',
-    },
-    {
-      id: 6,
-      name: 'Producto 6',
-      quality: 'Nuevo',
-      status: 'Oferta',
-    },
-    {
-      id: 7,
-      name: 'Producto 7',
-      quality: 'Seminuevo',
-      status: 'Rechazado',
-    },
-    {
-      id: 8,
-      name: 'Producto 8',
-      quality: 'Nuevo',
-      status: 'Oferta',
-    },
-  ];
+  notifications: any = [];
+  user_id = JSON.parse(localStorage.getItem('user') || '{}')?.id;
+   
   
-  constructor() { 
+  constructor(private notificationsS: NotificationService, private productS: ProductsService) { 
     addIcons({closeCircle});
   }
 
   ngOnInit() {
+    this.notificationsS.getMessagesByUser(this.user_id).subscribe((data: any) => {
+      this.notifications = data;
+      console.log('Notifications:', this.notifications);
+      this.notifications.forEach((notification: any) => {
+        this.productS.getProduct(notification.id_product).subscribe((productData: any) => {
+          notification.productData = productData;
+          console.log('Notification with Product Data:', notification);
+        });
+    });
+    });
   }
 
 }

@@ -49,5 +49,12 @@ export class NotificationService {
       }
     });
   }
-  
+
+  getMessagesByUser(user_id: number){
+    return this.http.get(`${APIURL}/recipient/${user_id}`, {
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
 }

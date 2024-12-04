@@ -39,35 +39,23 @@
       <ion-col size="12" style="max-height: 70vh; overflow-y: auto;">
         <ion-list>
           <ion-row>
-            @for (item of products; track $index) {
+            @for (item of notifications; track item.id) {
             <ion-col size="6">
               <ion-card mode="ios" [ngClass]="{
-                'accepted-shadow': item.status === 'Aceptado',
-                'rejected-shadow': item.status === 'Rechazado',
-                'offered-shadow': item.status === 'Oferta'
+                'accepted-shadow': item.message_type === 'aceptado',
+                'rejected-shadow': item.message_type === 'rechazado',
+                'offered-shadow': item.message_type === 'ofertas'
               }" class="equal-height-card">
-                <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                <img alt="Imagen del producto" [src]="item.productData.image1" />
                 <ion-card-header>
-                  <ion-card-title style="font-size: 20px;">{{item.name}}</ion-card-title>
-                  <ion-card-subtitle style="font-size: 12px;">{{item.status}}</ion-card-subtitle>
+                  <ion-card-title style="font-size: 18px;">{{item.productData.name}}</ion-card-title>
+                  <ion-card-subtitle style="font-size: 12px;">{{item.message_type}}</ion-card-subtitle>
                 </ion-card-header>
               
                 <ion-card-content class="card-content">
-                  <ng-container *ngIf="item.status === 'Aceptado'; else elseBlock">
-                    ¡Felicidades! Tu oferta ha sido aceptada.
-                  </ng-container>
-
-                  <ng-template #elseBlock>
-                    <ng-container *ngIf="item.status === 'Rechazado'; else offerBlock">
-                      Lamentablemente, tu oferta ha sido rechazada.
+                  <ng-container>
+                      {{item.description}}
                     </ng-container>
-                  </ng-template>
-
-                  <ng-template #offerBlock>
-                    <ng-container *ngIf="item.status === 'Oferta'">
-                      Tienes una nueva oferta disponible.
-                    </ng-container>
-                  </ng-template>
                 </ion-card-content>
               </ion-card>
             </ion-col>

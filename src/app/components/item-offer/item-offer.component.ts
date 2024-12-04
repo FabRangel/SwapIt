@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { create, closeCircleOutline, addCircleOutline } from 'ionicons/icons';
 import { StorageService } from 'src/app/services/storage.service';
 import { addIcons } from 'ionicons';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-item-offer',
@@ -36,7 +37,7 @@ export class ItemOfferComponent  implements OnInit {
   image_url: string | null = null;
   productOfferedinBD: any = {};
 
-  constructor(private modalCtrl : ModalController, private productS: ProductsService, private offerS: OffersService, private storageS : StorageService) {
+  constructor(private modalCtrl : ModalController, private productS: ProductsService, private offerS: OffersService, private storageS : StorageService, private notificationsS: NotificationService) {
       addIcons({closeCircleOutline,addCircleOutline}); 
   }
 
@@ -158,6 +159,14 @@ export class ItemOfferComponent  implements OnInit {
         this.offerS.createOffer({id_product: this.productId, id_product_offered: this.productOfferedinBD.id, id_user_offer: this.id_user, status_offer: 'en curso', offer_date: new Date().toISOString() }).subscribe((offerData: any) => {
             console.log('Offer created:', offerData);
             this.openResultModal('success');
+            this.notificationsS.createMessage({id_recipient: this.product.id_user, id_user: this.id_user, description: 'Tienes una nueva oferta', message_type: 'ofertas', id_product: this.productId}).subscribe({
+              next: (data) => {
+                console.log('Notificación creada:', data);
+              },
+              error: (error) => {
+                console.error('Error al crear notificación:', error);
+              },
+            });
           });
       },
       (error) => {

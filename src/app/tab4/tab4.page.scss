@@ -75,3 +75,21 @@
   flex-direction: column;
   justify-content: space-between;
   }
+
+  /* Añadir en el archivo de estilos globales o de la página específica */
+
+.equal-height-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Asegura que la tarjeta ocupe todo el espacio disponible */
+}
+
+.equal-height-card ion-card-header,
+.equal-height-card ion-card-content {
+  flex: 1; /* Hace que los elementos dentro de la tarjeta se expandan igualmente */
+}
+
+.equal-height-card img {
+  width: 100%; /* Asegura que la imagen ocupe el ancho completo */
+  height: auto;
+}

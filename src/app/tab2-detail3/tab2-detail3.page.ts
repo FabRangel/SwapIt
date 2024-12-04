@@ -21,7 +21,7 @@ export class Tab2Detail3Page implements OnInit {
   @Input() funcionality!: number;
   @Input() is_new!: boolean;
   selectedOption: string = '';
-  options: string[] = ['Tecnología', 'Hogar', 'Ropa', 'Otros'];
+  options: string[] = ['electrónico', 'ropa', 'hogar', 'otros'];
   interest_categories: string[] = []; 
 
   addCategory() {

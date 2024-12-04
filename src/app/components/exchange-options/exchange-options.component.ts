@@ -69,26 +69,76 @@ export class ExchangeOptionsComponent  implements OnInit {
 
   updateOffer() {
     console.log('Oferta seleccionada:', this.selectedOfferId);
-    this.offerS.updateOffer(this.selectedOfferId, {status : 'aceptado'}).subscribe((data: any) => {
+  
+    // Actualizar el estado de la oferta seleccionada a "aceptado"
+    this.offerS.updateOffer(this.selectedOfferId, { status: 'aceptado' }).subscribe((data: any) => {
       console.log('Oferta actualizada:', data);
-      this.modalCtrl.dismiss();
-      //crea notificacion
-      this.offerS.getOffer(this.selectedOfferId).subscribe((data: any) => {
-        console.log('Oferta:', data);
-        this.id_recipient = data.id_user_offer;
-      });
-      console.log('Id del usuario:', this.id_recipient);
-      this.notificationsS.createMessage({id_recipient: this.id_recipient , id_user: this.id_user, description: 'Tu oferta ha sido aceptada', message_type: 'aceptado'}).subscribe(
-        (data: any) => {
-          console.log('Notificacion:', data);
-        },
-        (error: any) => {
-          console.error('Error:', error);
+  
+      // Obtener la información de la oferta aceptada
+      this.offerS.getOffer(this.selectedOfferId).subscribe((acceptedOffer: any) => {
+        this.id_recipient = acceptedOffer.id_user_offer;
+  
+        // Crear notificación para el usuario cuya oferta fue aceptada
+        this.notificationsS.createMessage({
+          id_recipient: this.id_recipient,
+          id_user: this.id_user,
+          description: 'Tu oferta ha sido aceptada',
+          message_type: 'aceptado',
+          id_product: this.productId,
+        }).subscribe(
+          (data: any) => {
+            console.log('Notificación de aceptación:', data);
+          },
+          (error: any) => {
+            console.error('Error creando notificación de aceptación:', error);
+          }
+        );
+  
+        // Enviar notificaciones de rechazo a los demás usuarios
+        this.offers.forEach((offer: any) => {
+          if (offer.id !== this.selectedOfferId) {
+            this.notificationsS.createMessage({
+              id_recipient: offer.id_user_offer,
+              id_user: this.id_user,
+              description: 'Tu oferta ha sido rechazada',
+              message_type: 'rechazado',
+              id_product: this.productId,
+            }).subscribe(
+              (data: any) => {
+                console.log('Notificación de rechazo:', data);
+              },
+              (error: any) => {
+                console.error('Error creando notificación de rechazo:', error);
+              }
+            );
+  
+            // Opcional: Actualizar el estado de las ofertas rechazadas
+            this.offerS.updateOffer(offer.id, { status: 'rechazado' }).subscribe(
+              (data: any) => {
+                console.log('Oferta rechazada actualizada:', data);
+              },
+              (error: any) => {
+                console.error('Error actualizando oferta rechazada:', error);
+              }
+            );
+          }
         });
-      //modifica el estatus del producto
-      this.productS.updateProduct(this.productId, {status: 'finalizada'}).subscribe((data: any) => {
-        console.log('Producto actualizado:', data);
+  
+        // Modificar el estado del producto a "finalizada"
+        this.productS.updateProduct(this.productId, { status: 'finalizada' }).subscribe((data: any) => {
+          console.log('Producto actualizado:', data);
+        });
+  
+        this.modalCtrl.dismiss();
+        setTimeout(() => {
+          window.location.reload(); 
+        }, 5000)
       });
-  });
-}
+    });
+  }
+  
+  reload() {
+    window.location.reload();
+  }
+
 }

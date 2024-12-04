@@ -164,7 +164,7 @@ export class Tab3Page {
     await modal.present();
   }
 
-  //Filtrar ofertas
+  //Filtrar ofertas'
   toggleStatusFilterOffer(status: string) {
     const index = this.selectedStatusFilterOffer.indexOf(status);
     if (index > -1) {
