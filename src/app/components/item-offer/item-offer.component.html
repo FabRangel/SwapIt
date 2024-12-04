@@ -17,7 +17,7 @@
       </ion-row>
       <ion-row class="ion-text-center">
         <ion-col size="12">
-          <ion-chip *ngFor="let category of categories" [color]="selectedChip === category ? 'success' : 'medium'"
+          <ion-chip *ngFor="let category of acceptedCategories" [color]="selectedChip === category ? 'success' : 'medium'"
             (click)="selectChip(category)">
             <ion-label>{{ category }}</ion-label>
           </ion-chip>
@@ -25,17 +25,32 @@
       </ion-row>
       <ion-row>
         <ion-col offset="1" size="2">
-          <ion-avatar>
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+          <ion-avatar (click)="triggerFileInput()">
+            <img [src]="selectedImage || 'https://ionicframework.com/docs/img/demos/card-media.png'" alt="Producto" />
+            <ion-icon 
+              name="add-circle-outline" 
+              size="large" 
+              color="light" 
+              class="add-icon">
+            </ion-icon>
           </ion-avatar>
+          
+          <input 
+            type="file" 
+            accept="image/*" 
+            (change)="onFileSelected($event)" 
+            multiple 
+            hidden 
+            id="fileInput" 
+          />
         </ion-col>
         <ion-col size="9">
-          <ion-input type="text" placeholder="Tu producto"></ion-input>
+          <ion-input type="text" placeholder="Tu producto" [(ngModel)]="productOffered.name"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col offset="1" size="10">
-          <ion-textarea [counter]="true" maxlength="250" [autoGrow]="true" label="Descripción"
+          <ion-textarea [(ngModel)]="productOffered.description"  [counter]="true" maxlength="250" [autoGrow]="true" label="Descripción"
             labelPlacement="floating"></ion-textarea>
         </ion-col>
         <ion-col offset="1" size="10">
@@ -60,13 +75,13 @@
         </ion-col>
         <ion-col offset="1" size="10">
           <ion-label>Calidad</ion-label> <br><br>
-          <ion-radio-group value="custom-checked">
+          <ion-radio-group [(ngModel)]="productOffered.is_new">
             <ion-item lines="none">
-              <ion-radio slot="start" value="nuevo" aria-label="Nuevo"></ion-radio>
+              <ion-radio slot="start" value="1" aria-label="Nuevo"></ion-radio>
               <ion-label>Nuevo</ion-label>
             </ion-item>
             <ion-item lines="none">
-              <ion-radio slot="start" value="usado" aria-label="Usado"></ion-radio>
+              <ion-radio slot="start" value="0" aria-label="Usado"></ion-radio>
               <ion-label>Usado</ion-label>
             </ion-item>
           </ion-radio-group>
@@ -77,7 +92,7 @@
           <ion-button (click)="close()" mode="ios" expand="block" fill="outline" color="danger"  >Cancelar</ion-button>
         </ion-col>
         <ion-col size="6">
-          <ion-button (click)="openResultModal('success')"  mode="ios" expand="block" fill="outline" color="primary">Ofertar</ion-button>
+          <ion-button (click)="createOffer()"  mode="ios" expand="block" fill="outline" color="primary">Ofertar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

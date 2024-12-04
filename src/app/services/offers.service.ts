@@ -58,5 +58,13 @@ export class OffersService {
       }
     });
   }
+
+  createOffer(body: any){
+    return this.http.post(`${APIURL}/`, body, {
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
   
 }

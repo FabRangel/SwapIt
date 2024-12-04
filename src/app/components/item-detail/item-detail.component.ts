@@ -56,6 +56,9 @@ export class ItemDetailComponent  implements OnInit {
         mode: 'ios',
         cssClass: 'my-modal',
         showBackdrop: false,
+        componentProps: {
+          productId: this.productId
+        }
       });
       await modal.present();
   }

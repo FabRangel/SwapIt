@@ -32,3 +32,15 @@
   
     transform: rotate(45deg);
   }
+
+  ion-avatar {
+    position: relative; /* Establecer el contenedor como relativo */
+  }
+  
+  .add-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar el ícono */
+    pointer-events: none; /* Asegura que el clic se pase al contenedor */
+  }
