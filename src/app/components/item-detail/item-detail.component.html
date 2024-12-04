@@ -15,42 +15,34 @@
             </ion-col>
             <ion-col size="3">
               <ion-text>
-                <h3>Title</h3>
+                <h6>{{product.name}}</h6>
               </ion-text>
             </ion-col>
             <ion-col size="5">
               <div
                 style="display: flex; flex-direction: column; justify-content: center; text-align: right; height: 100%;">
-                <p style="margin: 0;">13-sept-2024</p>
-                <h5 style="margin: 0;">Categoría</h5>
+                <p style="margin: 0;">{{ product.created_at | date: 'yyyy-MM-dd' }}</p>
+                <h5 style="margin: 0;">{{product.category}}</h5>
               </div>
             </ion-col>
           </ion-row>
 
           <ion-row class="ion-text-center">
             <ion-col size="12">
-              <ion-chip color="medium" mode="ios">
-                <ion-label>Hogar</ion-label>
-              </ion-chip>
-              <ion-chip  color="medium" mode="ios">
-                <ion-label>Electrónicos</ion-label>
-              </ion-chip>
-              <ion-chip  color="medium" mode="ios">
-                <ion-label>Ropa</ion-label>
-              </ion-chip>
-              <ion-chip  color="medium" mode="ios">
-                <ion-label>Otros</ion-label>
+              <ion-chip *ngFor="let category of acceptedCategories" color="medium" mode="ios">
+                <ion-label>{{ category }}</ion-label>
+               <!-- <ion-icon name="close-circle"></ion-icon>-->
               </ion-chip>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col  offset="1" size="10">
-              <ion-textarea [readonly]="true" [counter]="true" maxlength="250" [autoGrow]="true" label="Descripción" labelPlacement="floating" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et imperdiet lacus. Nulla maximus, turpis quis tincidunt blandit, dui urna semper turpis, at bibendum libero ligula sed lectus. "></ion-textarea>
+              <ion-textarea [readonly]="true" [counter]="true" maxlength="250" [autoGrow]="true" label="Descripción" labelPlacement="floating" [value]="product.description "></ion-textarea>
             </ion-col>
             <ion-col  offset="1" size="10">
               <ion-label>Valoración</ion-label>
-              <ion-item lines="none" class="ion-text-center">
+              <!-- <ion-item lines="none" class="ion-text-center">
                   <ion-icon 
                     size="large"
                     [name]="rating >= 1 ? 'star' : 'star-outline'" 
@@ -81,11 +73,38 @@
                     [color]="rating >= 5 ? 'warning' : 'medium'" 
                     (click)="setRating(5)">
                   </ion-icon>
+              </ion-item> -->
+              <ion-item lines="none" class="ion-text-center">
+                <ion-icon 
+                  size="large"
+                  [name]="product.funcionality >= 1 ? 'star' : 'star-outline'" 
+                  [color]="product.funcionality >= 1 ? 'warning' : 'medium'">
+                </ion-icon>
+                <ion-icon 
+                  size="large"
+                  [name]="product.funcionality >= 2 ? 'star' : 'star-outline'" 
+                  [color]="product.funcionality >= 2 ? 'warning' : 'medium'">
+                </ion-icon>
+                <ion-icon 
+                  size="large"
+                  [name]="product.funcionality >= 3 ? 'star' : 'star-outline'" 
+                  [color]="product.funcionality >= 3 ? 'warning' : 'medium'">
+                </ion-icon>
+                <ion-icon 
+                  size="large"
+                  [name]="product.funcionality >= 4 ? 'star' : 'star-outline'" 
+                  [color]="product.funcionality >= 4 ? 'warning' : 'medium'">
+                </ion-icon>
+                <ion-icon 
+                  size="large"
+                  [name]="product.funcionality >= 5 ? 'star' : 'star-outline'" 
+                  [color]="product.funcionality >= 5 ? 'warning' : 'medium'">
+                </ion-icon>
               </ion-item>
             </ion-col>
             <ion-col offset="1" size="10">
               <ion-label>Calidad</ion-label> 
-              <ion-textarea  labelPlacement="floating" value="Nuevo" [readonly]="true" color="black"></ion-textarea>
+              <ion-textarea  labelPlacement="floating" [value]="product.is_new ? 'Nuevo': 'Usado'" [readonly]="true"  color="light"></ion-textarea>
             </ion-col>
           </ion-row>
           <ion-row>

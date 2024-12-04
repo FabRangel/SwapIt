@@ -22,7 +22,7 @@
       slideShadows: false,
     }" :modules="modules">
           @for (item of recentProducts; track item.id) {
-          <swiper-slide (click)="openItemDetail(item.id)">
+          <swiper-slide >
             <ion-row>
               <ion-col class="imgContainer" size="5">
                 <img [src]="item.image1" alt="imagen Producto">
@@ -86,7 +86,7 @@
           <swiper-slide *ngFor="let productRow of firstGroupedProducts">
             <ion-row>
               <ion-col size="4" *ngFor="let product of productRow">
-                <ion-card class="custom-card">
+                <ion-card class="custom-card" (click)="openItemDetail(product.id)">
                   <img [src]="product.image1" alt="Imagen del Producto" />
                   <ion-card-header>
                     <ion-card-title>{{ product.name }}</ion-card-title>
@@ -106,7 +106,7 @@
           <swiper-slide *ngFor="let productRow of secondGroupedProducts">
             <ion-row>
               <ion-col size="4" *ngFor="let product of productRow">
-                <ion-card class="custom-card">
+                <ion-card class="custom-card" (click)="openItemDetail(product.id)">
                   <img [src]="product.image1" alt="Imagen del Producto" />
                   <ion-card-header>
                     <ion-card-title>{{ product.name }}</ion-card-title>

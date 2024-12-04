@@ -263,7 +263,7 @@ export class Tab1Page {
   }
 
   openItemDetail(productId: any) {
-    
+    console.log('Producto seleccionado:', productId);
       this.modalCtrl.create({
         component: ItemDetailComponent,
         cssClass: 'my-modal',
