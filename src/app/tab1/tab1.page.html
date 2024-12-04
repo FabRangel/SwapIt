@@ -22,7 +22,7 @@
       slideShadows: false,
     }" :modules="modules">
           @for (item of recentProducts; track item.id) {
-          <swiper-slide>
+          <swiper-slide (click)="openItemDetail(item.id)">
             <ion-row>
               <ion-col class="imgContainer" size="5">
                 <img [src]="item.image1" alt="imagen Producto">
@@ -117,12 +117,6 @@
             </ion-row>
           </swiper-slide>
         </swiper-container>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <app-item-detail />
       </ion-col>
     </ion-row>
   </ion-grid>

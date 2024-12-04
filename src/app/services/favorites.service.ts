@@ -59,4 +59,28 @@ export class FavoritesService {
     });
   }
 
+  showFavoritesByProduct(product_id: number){
+    return this.http.get(`${APIURL}/product/${product_id}`, {
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
+
+  showFavoritesByUserAndProduct(user_id: number, product_id: number){
+    return this.http.get(`${APIURL}/user/${user_id}/product/${product_id}`, {
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
+
+  countFavoritesByProduct(product_id: number){
+    return this.http.get(`${APIURL}/product/${product_id}/count`, {
+      headers:{
+        Authorization: `Bearer ${this.tk}`
+      }
+    });
+  }
+  
 }

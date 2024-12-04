@@ -38,4 +38,7 @@ export class ItemDetailComponent  implements OnInit {
       await modal.present();
   }
  
+  close() {
+    this.modalCtrl.dismiss();
+  }
 }

@@ -9,6 +9,7 @@ import {
   IonRow,
   IonSearchbar,
   IonToggle,
+  ModalController,
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
@@ -89,7 +90,8 @@ export class Tab1Page {
 
   constructor(
     private productS: ProductsService,
-    private favoriteS: FavoritesService
+    private favoriteS: FavoritesService,
+    private modalCtrl: ModalController
   ) {
     addIcons({
       calendarOutline,
@@ -259,4 +261,13 @@ export class Tab1Page {
       console.log('Producto eliminado de la lista de favoritos del usuario.');
     });
   }
+
+  openItemDetail(productId: any) {
+    
+      this.modalCtrl.create({
+        component: ItemDetailComponent,
+        cssClass: 'my-modal',
+        componentProps: { productId },
+      }).then(modal => modal.present());
+    }
 }
