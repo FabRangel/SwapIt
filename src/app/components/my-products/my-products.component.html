@@ -49,8 +49,8 @@
           <ion-item *ngFor="let item of offers; trackBy: trackById">
             <ion-label>
               <div style="display: flex; justify-content: space-between;">
-                <span>{{ item.name }}</span>
-                <p class="quality-text">{{ item.date }}</p>
+                <span>{{ item.productData.name }}</span>
+                <p class="quality-text">{{ item.productData.created_at | date: 'yyyy-MM-dd' }}</p>
               </div>
             </ion-label>
           </ion-item>

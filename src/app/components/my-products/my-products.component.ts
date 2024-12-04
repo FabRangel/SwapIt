@@ -80,14 +80,16 @@ export class MyProductsComponent implements OnInit {
     });
     this.offerS.getOffersByProduct(this.productId).subscribe((data: any) => {
       console.log('Ofertas:', data);
-      this.offers = Array.isArray(data.offers) ? data.offers : [];
+      this.offers = data;
       console.log('Offers array:', this.offers);
+      this.offers.forEach((offer) => {
+        this.productS.getProduct(offer.id_product_offered).subscribe((productData: any) => {
+          offer.productData = productData;
+          console.log('Offer with Product Data:', offer);
+        });
+      });
     });
-    this.offerS.getOffersByProduct(this.productId).subscribe((data: any) => {
-      console.log('Ofertas:', data);
-      this.offers = Array.isArray(data.offers) ? data.offers : [];
-      console.log('Offers array:', this.offers);
-    });
+    
   }
 
   fetchAcceptedCategories() {
