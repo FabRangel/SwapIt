@@ -1,41 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonGrid, IonRow, IonCol, IonList, IonRadioGroup, IonItem, IonRadio, IonToolbar, IonButtons, IonButton, IonIcon, IonLabel, ModalController } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { close, closeCircleOutline } from 'ionicons/icons';
+import { close, closeCircleOutline, notifications } from 'ionicons/icons';
 import { ModalAskingComponent } from '../modal-asking/modal-asking.component';
 import { ModalResultComponent } from '../modal-result/modal-result.component';
+import { ProductsService } from 'src/app/services/products.service';
+import { OffersService } from 'src/app/services/offers.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   standalone: true,
   selector: 'app-exchange-options',
   templateUrl: './exchange-options.component.html',
   styleUrls: ['./exchange-options.component.scss'],
-  imports: [ModalAskingComponent,ModalResultComponent,IonLabel, IonIcon, IonButton, IonButtons, IonToolbar, IonRadio, IonItem, IonRadioGroup, IonList, IonCol, IonRow, IonGrid, ],
+  imports: [ModalAskingComponent,ModalResultComponent,IonLabel, IonIcon, IonButton, IonButtons, IonToolbar, IonRadio, IonItem, IonRadioGroup, IonList, IonCol, IonRow, IonGrid, CommonModule, FormsModule],
 })
 export class ExchangeOptionsComponent  implements OnInit {
+  @Input() productId: any | undefined;
+  offers: any = [];
+  selectedOfferId!: any  ;
+  id_recipient! : any;
+  id_user = JSON.parse(localStorage.getItem('user') || '{}')?.id;
 
-  constructor(private modalCtrl: ModalController) {
-      addIcons({closeCircleOutline}); }
+  constructor(private modalCtrl: ModalController, private productS: ProductsService, private offerS: OffersService, private notificationsS: NotificationService) {
+      addIcons({closeCircleOutline}); 
+    }
 
-  ngOnInit() {}
-
-  products = [
-    {
-      id: 1,
-      name: 'Producto 1',
-      quality: 'Nuevo',
-    },
-    {
-      id: 2,
-      name: 'Producto 2',
-      quality: 'Seminuevo',
-    },
-    {
-      id: 3,
-      name: 'Producto 3',
-      quality: 'Nuevo',
-    },
-  ];
+  ngOnInit() {
+    this.offerS.getOffersByProduct(this.productId).subscribe((data: any) => {
+      this.offers = data;
+      this.offers.forEach((offer: any) => {
+        this.productS.getProduct(offer.id_product_offered).subscribe((productDataOffered: any) => {
+          offer.productDataOffered = productDataOffered;
+          console.log('Oferta completa:', offer);
+          this.selectedOfferId = offer.id;
+          this.id_recipient = offer.id_user_offer;
+        });
+      });
+    });
+  }
 
  async close() {
     this.modalCtrl.dismiss();
@@ -55,5 +60,35 @@ export class ExchangeOptionsComponent  implements OnInit {
       }
     });
     await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      this.updateOffer();
+    }
   }
+
+  updateOffer() {
+    console.log('Oferta seleccionada:', this.selectedOfferId);
+    this.offerS.updateOffer(this.selectedOfferId, {status : 'aceptado'}).subscribe((data: any) => {
+      console.log('Oferta actualizada:', data);
+      this.modalCtrl.dismiss();
+      //crea notificacion
+      this.offerS.getOffer(this.selectedOfferId).subscribe((data: any) => {
+        console.log('Oferta:', data);
+        this.id_recipient = data.id_user_offer;
+      });
+      console.log('Id del usuario:', this.id_recipient);
+      this.notificationsS.createMessage({id_recipient: this.id_recipient , id_user: this.id_user, description: 'Tu oferta ha sido aceptada', message_type: 'aceptado'}).subscribe(
+        (data: any) => {
+          console.log('Notificacion:', data);
+        },
+        (error: any) => {
+          console.error('Error:', error);
+        });
+      //modifica el estatus del producto
+      this.productS.updateProduct(this.productId, {status: 'finalizada'}).subscribe((data: any) => {
+        console.log('Producto actualizado:', data);
+      });
+  });
+}
 }

@@ -273,6 +273,9 @@ export class MyProductsComponent implements OnInit {
       mode: 'ios',
       cssClass: 'my-exchanges',
       showBackdrop: false,
+      componentProps: {
+        productId: this.productId,
+      },
     });
     await modal.present();
   }
