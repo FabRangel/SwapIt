@@ -175,13 +175,16 @@ export class Tab1Page {
   onCategoryChange(event: any) {
     const selectedCategory = event.detail.value;
     this.selectedCategory = selectedCategory;
-
+    console.log(selectedCategory);
     if (selectedCategory === 'todo') {
       this.filteredProducts = this.products;
+      console.log('Todos los productos:', this.filteredProducts);
     } else {
       this.filteredProducts = this.products.filter(
         (product) => product.category === selectedCategory
       );
+
+      console.log('Productos filtrados:', this.filteredProducts);
     }
 
     this.updateGroupedProducts();

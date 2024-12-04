@@ -93,3 +93,10 @@
   width: 100%; /* Asegura que la imagen ocupe el ancho completo */
   height: auto;
 }
+
+/* Asegura que todas las imágenes dentro de las tarjetas tengan un tamaño uniforme */
+.equal-height-card img {
+  width: 100%; /* Hace que la imagen ocupe todo el ancho de la tarjeta */
+  height: 200px; /* Establece una altura fija para la imagen, puedes ajustar este valor */
+  object-fit: cover; /* Mantiene la imagen recortada proporcionalmente para ajustarse al área */
+}
